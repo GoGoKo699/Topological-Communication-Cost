@@ -24,15 +24,15 @@ The implementation follows [the exact preparation protocol](../science/preparati
 
 | Check | Evidence and purpose |
 |---|---|
-| Block partition and local schedules | Every vertex belongs to exactly one balanced block. Every operation layer has disjoint site supports and unit lattice diameter. The four-direction star circuit contains exactly the required CNOTs, including the distinct parallel edge labels at $L=2$. |
+| Block partition and local schedules | Every vertex belongs to exactly one balanced block. Every operation layer has disjoint site supports and unit lattice diameter. The four-direction star circuit contains exactly the required CNOTs, including the distinct parallel edge labels at $`L=2`$. |
 | Local and coarse parity processing | Local register updates are compared with direct block parities. The controller's subtree coefficients are checked against an independently computed coarse incidence boundary. |
-| Physical correction | The actual Pauli-$Z$ edge mask is assembled from executed sweep and routing operations. A fresh physical edge-incidence calculation verifies cancellation of every initial star defect. Local instruction tokens must reach a gate before it can run. |
+| Physical correction | The actual Pauli-$`Z`$ edge mask is assembled from executed sweep and routing operations. A fresh physical edge-incidence calculation verifies cancellation of every initial star defect. Local instruction tokens must reach a gate before it can run. |
 | Classical communication | Both collection and return traffic are present. Sender, recipient and order stay fixed across all tested syndromes. The all-zero syndrome still executes the full prescribed zero-bit transcript. Controller-owned instructions are local and are not mislabeled as delivered messages. |
-| Target logical sector | Binary stabilizer ranks verify $L^2-1$ independent stars, $L^2-1$ independent plaquettes and two independent logical-$Z$ constraints. Closed-loop incidence verifies their commutation. Every implemented correction is explicitly a $Z$ edge mask. |
-| Exact small-state amplitudes | For $L=2,3$, the program builds the full product-star orbit of $|0\rangle$. For every even syndrome and every block parameter in those sizes, the measured-state phase and the physical correction phase cancel exactly on every basis amplitude. The corrected state is the same fixed ground state in every branch. |
-| Resource bounds and endpoints | The program checks the actual local layer count against $12\ell+2$, exact delivered-bit counts against $2(B-1)$ and $N/\ell^2$, local/coarse edge-operation inventories, route lengths, and the zero-communication endpoint when $B=1$. |
+| Target logical sector | Binary stabilizer ranks verify $`L^2-1`$ independent stars, $`L^2-1`$ independent plaquettes and two independent logical-$`Z`$ constraints. Closed-loop incidence verifies their commutation. Every implemented correction is explicitly a $`Z`$ edge mask. |
+| Exact small-state amplitudes | For $`L=2,3`$, the program builds the full product-star orbit of $`\lvert0\rangle`$. For every even syndrome and every block parameter in those sizes, the measured-state phase and the physical correction phase cancel exactly on every basis amplitude. The corrected state is the same fixed ground state in every branch. |
+| Resource bounds and endpoints | The program checks the actual local layer count against $`12\ell+2`$, exact delivered-bit counts against $`2(B-1)`$ and $`N/\ell^2`$, local/coarse edge-operation inventories, route lengths, and the zero-communication endpoint when $`B=1`$. |
 
-The all-even-syndrome enumeration covers $L=2,3$. Larger sizes are $L=4,5,7,8,10,11,16,17,31,48$, using several block sizes for each. Each larger configuration has three structured syndromes and twelve samples from the fixed seed `20261105`. The structured cases include no defects, a pair straddling the coordinate cut, and the largest all-one even pattern. Odd syndromes are explicitly rejected because they cannot arise from the complete star measurement.
+The all-even-syndrome enumeration covers $`L=2,3`$. Larger sizes are $`L=4,5,7,8,10,11,16,17,31,48`$, using several block sizes for each. Each larger configuration has three structured syndromes and twelve samples from the fixed seed `20261105`. The structured cases include no defects, a pair straddling the coordinate cut, and the largest all-one even pattern. Odd syndromes are explicitly rejected because they cannot arise from the complete star measurement.
 
 ### Preserved construction result
 
@@ -69,11 +69,11 @@ These checks do not verify all lattice sizes, derive the communication converse,
 python3 tools/verify_geometry.py
 ```
 
-The program independently forms Pauli supports by multiplying stars and plaquettes and traversing the two paths. For radii $R=0,1,2,3,5,8$, it checks the open-string deformation identity, one crossing of each open string with the closed string, containment of the thickened supports, separation from the endpoint regions, and the required partition into $E,U,V$. Every tested radius passes. It also checks **520** finite combinations of radius, lattice size and overlap in the packing and hard/mean-cost scalar inequalities, including the zero-patch and small-overlap cases.
+The program independently forms Pauli supports by multiplying stars and plaquettes and traversing the two paths. For radii $`R=0,1,2,3,5,8`$, it checks the open-string deformation identity, one crossing of each open string with the closed string, containment of the thickened supports, separation from the endpoint regions, and the required partition into $`E,U,V`$. Every tested radius passes. It also checks **520** finite combinations of radius, lattice size and overlap in the packing and hard/mean-cost scalar inequalities, including the zero-patch and small-overlap cases.
 
 These checks use explicit integer sets and exact Pauli incidence; only the scalar logarithms use floating-point arithmetic with a stated numerical tolerance. The [all-radius proof](../science/local-braiding.md) and [channel argument](../science/channel-overlap.md) establish the general converse. The programs do not simulate arbitrary local channels or certify the transcript proof.
 
-The [braiding illustration](../figures/braiding-patch.svg) displays the exact $R=1$ cell neighborhoods. To regenerate it, install the optional plotting dependency `matplotlib` and run:
+The [braiding illustration](../figures/braiding-patch.svg) displays the exact $`R=1`$ cell neighborhoods. To regenerate it, install the optional plotting dependency `matplotlib` and run:
 
 ```bash
 python3 tools/plot_geometry.py

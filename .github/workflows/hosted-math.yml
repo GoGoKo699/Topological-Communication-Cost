@@ -1,0 +1,112 @@
+name: Hosted mathematics
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    name: GitHub math at the PR head
+    if: >-
+      github.repository == 'GoGoKo699/Topological-Communication-Cost' &&
+      github.event.pull_request.head.repo.full_name == 'GoGoKo699/Topological-Communication-Cost'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CAPTURE_REPOSITORY: GoGoKo699/Topological-Communication-Cost
+      CAPTURE_REVISION: ${{ github.event.pull_request.head.sha }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Initialize diagnostic evidence
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/hosted-math"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          fields = ('CAPTURE_REPOSITORY', 'CAPTURE_REVISION', 'GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT')
+          target = Path(os.environ['RUNNER_TEMP']) / 'hosted-math' / 'run-context.json'
+          target.write_text(json.dumps({key: os.environ[key] for key in fields}, indent=2) + '\n')
+          PY
+
+      - name: Check out the exact source commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: GoGoKo699/Topological-Communication-Cost
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: source
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+
+      - name: Verify the source and collector identities
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          root = Path(os.environ['GITHUB_WORKSPACE']) / 'source'
+          revision = os.environ['CAPTURE_REVISION']
+          if not re.fullmatch('[0-9a-f]{40}', revision):
+              raise SystemExit('Expected a complete source commit SHA')
+          actual = subprocess.check_output(['git', '--no-replace-objects', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
+          if actual != revision:
+              raise SystemExit('Checkout is not the requested source commit')
+          pins = {
+              'capture_hosted_math.cjs': '49182eaf354e86f685a4976814d672de5d7329a2d9e42f62a5227e2bc07c2d18',
+              'check_rendered_math.py': 'edbc2d72af94e96b78166d74b66fcea150134f2f3ebaaea121e9057768e1dbfe',
+          }
+          for name, expected in pins.items():
+              data = (root / '.github' / 'scripts' / name).read_bytes()
+              if hashlib.sha256(data).hexdigest() != expected:
+                  raise SystemExit('Collector source identity mismatch: ' + name)
+          target = Path(os.environ['RUNNER_TEMP']) / 'hosted-math' / 'collector-identities.json'
+          target.write_text(json.dumps(pins, indent=2) + '\n')
+          PY
+
+      - name: Install isolated pinned browser dependencies
+        run: |
+          set -euo pipefail
+          npm install --ignore-scripts --no-audit --no-fund \
+            --prefix "$RUNNER_TEMP/hosted-dependencies" \
+            playwright@1.56.1 mathjax-full@3.2.1 \
+            2>&1 | tee "$RUNNER_TEMP/hosted-math/dependency-install.log"
+          "$RUNNER_TEMP/hosted-dependencies/node_modules/.bin/playwright" \
+            install --with-deps chromium \
+            2>&1 | tee "$RUNNER_TEMP/hosted-math/browser-install.log"
+
+      - name: Capture every tracked Markdown page anonymously
+        run: |
+          set -euo pipefail
+          export NODE_PATH="$RUNNER_TEMP/hosted-dependencies/node_modules"
+          node "$GITHUB_WORKSPACE/source/.github/scripts/capture_hosted_math.cjs" \
+            --root "$GITHUB_WORKSPACE/source" \
+            --repository "$CAPTURE_REPOSITORY" \
+            --revision "$CAPTURE_REVISION" \
+            --python python3 \
+            --output "$RUNNER_TEMP/hosted-math/capture" \
+            2>&1 | tee "$RUNNER_TEMP/hosted-math/collector.log"
+
+      - name: Retain hosted evidence even after a failed comparison
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: hosted-math-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/hosted-math/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6
