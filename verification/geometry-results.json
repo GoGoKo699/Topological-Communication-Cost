@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "purpose": "Finite Pauli/support checks of the analytical local geometry",
+  "radii": [
+    {
+      "radius": 0,
+      "patch_side": 32,
+      "loop_edges": 32,
+      "upper_edges": 40,
+      "lower_edges": 40,
+      "buffered_intersection_cells": 0,
+      "upper_crossings": 1,
+      "lower_crossings": 1,
+      "pauli_and_support_checks": "pass"
+    },
+    {
+      "radius": 1,
+      "patch_side": 64,
+      "loop_edges": 60,
+      "upper_edges": 80,
+      "lower_edges": 80,
+      "buffered_intersection_cells": 12,
+      "upper_crossings": 1,
+      "lower_crossings": 1,
+      "pauli_and_support_checks": "pass"
+    },
+    {
+      "radius": 2,
+      "patch_side": 96,
+      "loop_edges": 88,
+      "upper_edges": 120,
+      "lower_edges": 120,
+      "buffered_intersection_cells": 40,
+      "upper_crossings": 1,
+      "lower_crossings": 1,
+      "pauli_and_support_checks": "pass"
+    },
+    {
+      "radius": 3,
+      "patch_side": 128,
+      "loop_edges": 116,
+      "upper_edges": 160,
+      "lower_edges": 160,
+      "buffered_intersection_cells": 84,
+      "upper_crossings": 1,
+      "lower_crossings": 1,
+      "pauli_and_support_checks": "pass"
+    },
+    {
+      "radius": 5,
+      "patch_side": 192,
+      "loop_edges": 172,
+      "upper_edges": 240,
+      "lower_edges": 240,
+      "buffered_intersection_cells": 220,
+      "upper_crossings": 1,
+      "lower_crossings": 1,
+      "pauli_and_support_checks": "pass"
+    },
+    {
+      "radius": 8,
+      "patch_side": 288,
+      "loop_edges": 256,
+      "upper_edges": 360,
+      "lower_edges": 360,
+      "buffered_intersection_cells": 544,
+      "upper_crossings": 1,
+      "lower_crossings": 1,
+      "pauli_and_support_checks": "pass"
+    }
+  ],
+  "scalar_checks": {
+    "cases": 520,
+    "all_size_and_cost_inequalities": "pass"
+  },
+  "scope": "Checks representative finite radii and scalar cases. Does not prove the all-radius lemma, channel bound, or novelty.",
+  "script_sha256": "4a628e8a634b6b3588c74417fa87f913c41ace3da9cde8489fc06aae49557117"
+}

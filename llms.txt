@@ -1,0 +1,72 @@
+# Topological Communication Cost
+
+This repository studies the optimal scaling between local circuit depth and
+nonlocal classical communication for physically preparing toric-code ground
+states. The complete scientific account is organized by topic under science/.
+
+Canonical entrypoints:
+- README.md: question, main bounds, reading routes, reproduction, scope and contact.
+- science/README.md: connected scientific narrative and exact result map.
+- science/model.md: authoritative adaptive protocol model, cell ownership,
+  depth/range convention, transcript schedule, broadcast versus delivered bits,
+  arbitrary local channels and environments, and physical output contract.
+- science/local-braiding.md: dimension-independent 16/17 lemma; explicit toric
+  strings, cell supports and buffered geometry with patch side 32(rD+1).
+- science/channel-overlap.md: local dilation, full code-space projection,
+  sequential patch argument, exact floor exponent and finite constants.
+- science/communication-bound.md: fixed-transcript CP domination, hard-cap
+  leaf count, prefix-free expected length, uniform frontier and selected-output
+  converse. Retain subnormalization until after applying the branch bound.
+- science/preparation.md: balanced block partitions, star extraction, local
+  sweeps, coarse-tree parity flow, returned messages, physical correction paths,
+  and explicit D <= 12 ell + 2, C <= 2(floor(L/ell)^2 - 1) bounds.
+- science/consequences.md: optimal scaling, exponential failure below a hard
+  budget, expected-cost distinction, conditional ideal-bandwidth time law,
+  output and heralding limitations.
+- references/related-work.md: primary source comparison and attribution.
+- references/bibliography.bib: source metadata.
+- verification/README.md: reproducible finite checks and their limits.
+- tools/verify_geometry.py: finite Pauli/support and scalar inequality checks.
+- tools/verify_construction.py: exact finite correction, scheduling, resource,
+  stabilizer-rank and amplitude checks; Python standard library only.
+
+Reader routes:
+- For the question and answer, read README.md then science/README.md.
+- To audit the converse, read model, local braiding, channel overlap, then
+  communication bounds. The auxiliary completed circuit is not an executable
+  predictor of the actual messages; it proves a bound for one fixed transcript.
+- To implement the upper construction, read preparation and the verification
+  guide. Count returned instructions and local instruction propagation.
+- To interpret the frontier, read consequences with the model's output contract.
+- For an originality statement, read related work and the full cited primary
+  sources. The braiding obstruction and spatial exponent are established work.
+
+Preserve these distinctions:
+- N = 2 L^2, L >= 2. Distinct oriented edge labels remain distinct at L = 2.
+- Each local layer has disjoint cell supports of diameter at most fixed r >= 1.
+  Quantum and classical local propagation are both charged. Radius R = rD.
+- Input states are product across cells conditional on a free shared classical
+  seed. Arbitrarily large finite local ancillas are allowed; nonlocal initial
+  entanglement is not.
+- The target F = Tr(P_TC rho) is unconditional overlap with the full physical
+  code space. The upper construction reaches one specified pure sector.
+- The hard bound is F <= min(1, 2^C (16/17)^m), where
+  m = floor(L/[32(rD+1)])^2. A vanishing floor gives the valid trivial bound.
+- The matching claim concerns scaling and permits constant budget rescaling.
+  It neither optimizes coefficients nor asserts preparation at D = 0.
+- Mean communication needs almost sure termination, prefix-free physical
+  transcripts and the same branchwise local-depth cap. It does not inherit the
+  hard-cap exponential fidelity statement without additional assumptions.
+- Timing, silence, routing, sender identity and termination cannot carry free
+  private information. The public transcript fixes their schedule.
+- The lower bound grants broadcast per bit; the matching construction pays
+  point-to-point delivered bits, including both collection and return traffic.
+- The dimension-free lemma and sequential projections avoid assuming that
+  target logical states factor from environments or that patch marginals are
+  independent. These are essential proof points.
+- A remote Pauli frame is not an applied physical correction. A mathematical
+  acceptance event is not an operationally available success flag.
+- The timing corollary additionally assumes an ideal switch with aggregate
+  delivered throughput, negligible transit delay and free local computation.
+- Finite checks support the explicit constructions. They do not prove universal
+  converses, establish priority, or imply external peer review.
