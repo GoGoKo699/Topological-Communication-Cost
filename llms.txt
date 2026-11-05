@@ -30,8 +30,19 @@ Canonical entrypoints:
 - tools/verify_construction.py: exact finite correction, scheduling, resource,
   stabilizer-rank and amplitude checks; Python standard library only.
 
+Learning entrypoints:
+- learning/MILESTONES.md: exactly M01–M30, a project-defined common map with
+  background/preliminaries and narrative/innovation phases, understanding
+  targets, earlier dependencies, conceptual connections and scientific sources.
+- learning/PRESKILL_BRIDGE.md: the single selected educational anchor, John
+  Preskill's Quantum Information, Chapter 7: Quantum Error Correction, updated
+  March 2026 author draft; relevant sections, translated conventions, worked
+  physical correction and the connections beyond the chapter.
+
 Reader routes:
 - For the question and answer, read README.md then science/README.md.
+- For self-directed study, follow the Preskill bridge alongside M01–M30. The
+  map is defined by the project, not by any particular reader's prior knowledge.
 - To audit the converse, read model, local braiding, channel overlap, then
   communication bounds. The auxiliary completed circuit is not an executable
   predictor of the actual messages; it proves a bound for one fixed transcript.
@@ -70,3 +81,9 @@ Preserve these distinctions:
   delivered throughput, negligible transit delay and free local computation.
 - Finite checks support the explicit constructions. They do not prove universal
   converses, establish priority, or imply external peer review.
+- Preskill's March 2026 chapter is an author draft. Its foundations do not
+  themselves state the charged-bit frontier or the arbitrary-channel overlap
+  theorem. Use the bridge and canonical proofs for those additional steps.
+- One educational anchor does not remove the primary research citations needed
+  to attribute the spatial obstruction, measurement-assisted preparation and
+  communication-accounting ingredients.

@@ -2,55 +2,55 @@
 
 **How much nonlocal classical information is needed to prepare topological order quickly?** This project determines the optimal scaling between local circuit depth and communicated classical bits for physical toric-code ground-state preparation.
 
-The system has $N=2L^2$ data qubits on an $L\times L$ torus. It starts without entanglement between lattice cells. Local quantum channels, measurements, private records, resets and arbitrary finite local ancillas are permitted. Local propagation consumes depth $D$; classical information sent outside those local layers consumes bits $C$. The output is the corrected quantum state itself, with unconditional ground-space weight $F=\operatorname{Tr}(P_{\mathrm{TC}}\rho)$.
+The system has $`N=2L^2`$ data qubits on an $`L\times L`$ torus. It starts without entanglement between lattice cells. Local quantum channels, measurements, private records, resets and arbitrary finite local ancillas are permitted. Local propagation consumes depth $`D`$; classical information sent outside those local layers consumes bits $`C`$. The output is the corrected quantum state itself, with unconditional ground-space weight $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho)`$.
 
-For every fixed target overlap $F\ge f>0$ and fixed interaction range,
+For every fixed target overlap $`F\ge f>0`$ and fixed interaction range,
 
-$$
+```math
 (C+1)(D+1)^2=\Omega(N).
-$$
+```
 
-The same scaling holds for expected communication $\overline C$ in almost surely terminating protocols. An explicit exact preparation matches the resource frontier: for every integer block scale $1\le\ell\le L$,
+The same scaling holds for expected communication $`\overline C`$ in almost surely terminating protocols. An explicit exact preparation matches the resource frontier: for every integer block scale $`1\le\ell\le L`$,
 
-$$
+```math
 D\le12\ell+2,\qquad
 C\le2\!\left(\left\lfloor L/\ell\right\rfloor^2-1\right)
 \le\frac{N}{\ell^2}.
-$$
+```
 
-At the wholly local endpoint, $C=0$ and $D\le2L+8$. Both the collection of block parities and the returned correction instructions are included in the communication cost.
+At the wholly local endpoint, $`C=0`$ and $`D\le2L+8`$. Both the collection of block parities and the returned correction instructions are included in the communication cost.
 
 | Local processing budget | Communication needed at fixed overlap | Attained preparation |
 | --- | --- | --- |
-| Constant depth | Order $N$ bits | Constant-size blocks |
-| Growing depth $D=o(L)$ | Order $N/(D+1)^2$ bits, up to depth rescaling by constants | Blocks with side proportional to $D$ |
-| Depth of order $L$ | Zero nonlocal bits are possible | A full-lattice local syndrome sweep |
+| Constant depth | Order $`N`$ bits | Constant-size blocks |
+| Growing depth $`D=o(L)`$ | Order $`N/(D+1)^2`$ bits, up to depth rescaling by constants | Blocks with side proportional to $`D`$ |
+| Depth of order $`L`$ | Zero nonlocal bits are possible | A full-lattice local syndrome sweep |
 
 ## Finite converse and its mechanism
 
-For local gate range $r\ge1$, define
+For local gate range $`r\ge1`$, define
 
-$$
+```math
 m=\left\lfloor\frac{L}{32(rD+1)}\right\rfloor^2,
 \qquad \lambda=\log_2(17/16).
-$$
+```
 
-Every protocol with a hard cap of $C$ nonlocal bits obeys
+Every protocol with a hard cap of $`C`$ nonlocal bits obeys
 
-$$
+```math
 F\le\min\{1,\,2^{C-\lambda m}\}.
-$$
+```
 
-Thus constant-depth preparation with $o(N)$ bits has exponentially small global ground-space weight. For prefix-free variable-length physical transcripts,
+Thus constant-depth preparation with $`o(N)`$ bits has exponentially small global ground-space weight. For prefix-free variable-length physical transcripts,
 
-$$
+```math
 \overline C\ge
 \max\{0,\,F\lambda m+F\log_2F\},
-$$
+```
 
-with $0\log_2 0=0$.
+with $`0\log_2 0=0`$.
 
-The proof places a braiding obstruction in each of $m$ disjoint causal patches. A local trace-preserving circuit has ground-space weight at most $(16/17)^m$, even when the logical state is entangled with discarded environments. Fixing a communicated transcript produces a local trace-preserving completion that dominates that branch's **subnormalized** output. Counting transcript leaves, or bounding their entropy, then prices the communication.
+The proof places a braiding obstruction in each of $`m`$ disjoint causal patches. A local trace-preserving circuit has ground-space weight at most $`(16/17)^m`$, even when the logical state is entangled with discarded environments. Fixing a communicated transcript produces a local trace-preserving completion that dominates that branch's **subnormalized** output. Counting transcript leaves, or bounding their entropy, then prices the communication.
 
 The topological obstruction and spatial exponent build on [Li, Lee and Yoshida](https://arxiv.org/html/2405.07970v3). Standard measurement-assisted toric preparation supplies the ingredients of the upper construction. The [source comparison](references/related-work.md) identifies these antecedents and distinguishes the charged-bit model from free feedforward, measurement-region counts and other communication tasks.
 
@@ -70,6 +70,14 @@ Start with the [scientific overview](science/README.md) and the [precise protoco
 | Which finite calculations can be reproduced? | [Verification guide](verification/README.md) |
 
 [The LLM reading guide](llms.txt) maps claims to their complete proofs and records the distinctions needed when explaining the result.
+
+## Learn the project
+
+The single educational anchor is **John Preskill, *Quantum Information*, Chapter 7: Quantum Error Correction**, using the [author's March 2026 draft](https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf). Its stabilizer, toric-code and string-operator sections provide the physical starting point.
+
+The [Preskill bridge](learning/PRESKILL_BRIDGE.md) identifies the relevant sections, translates conventions, and develops the additional connections to local channels, communicated transcripts and the physically corrected output. It separates the chapter's foundations from the primary research ingredients and the derivations supplied here.
+
+The [30-milestone map](learning/MILESTONES.md) follows the project's background and research narrative from local objects to the complete resource frontier. Each milestone records a central question, understanding target, earlier dependencies, conceptual connection and precise source pointers. It is a common route for self-directed study; specialists can use the direct proof route above.
 
 ## Reproduce the finite checks
 
