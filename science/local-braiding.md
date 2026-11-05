@@ -169,8 +169,10 @@ The support of an operator means its cell support; a cell belongs to the support
 We will use a unitary $`W`$ whose backward support spread obeys
 
 ```math
+\begin{aligned}
 \mathrm{supp}(W^\dagger O W)
 \subseteq N_R(\mathrm{supp}O)
+\end{aligned}
 \tag{1}
 ```
 
@@ -218,7 +220,9 @@ B_0=Z(\gamma_+),\qquad B'_0=Z(\gamma_-),
 and the closed $`X`$ string
 
 ```math
+\begin{aligned}
 A_0=\prod_{x=3s}^{9s}\prod_{y=8s}^{16s} A_{x,y}.
+\end{aligned}
 \tag{2}
 ```
 
@@ -227,15 +231,19 @@ The product in (2) cancels all edges internal to its vertex rectangle. Its survi
 The two open paths together bound a contractible plaquette rectangle:
 
 ```math
+\begin{aligned}
 B_0B'_0
 =\prod_{x=6s}^{26s-1}\prod_{y=2s}^{22s-1} B_{x,y}.
+\end{aligned}
 \tag{3}
 ```
 
 The upper path intersects the cut in exactly the edge $`v_{6s,16s}`$; the lower path intersects it in exactly $`v_{6s,8s-1}`$. Hence
 
 ```math
+\begin{aligned}
 A_0B_0=-B_0A_0,\qquad A_0B'_0=-B'_0A_0.
+\end{aligned}
 \tag{4}
 ```
 
@@ -248,9 +256,11 @@ If a normalized vector $`|\chi\rangle`$ satisfies
 then (2)–(4) imply
 
 ```math
+\begin{aligned}
 A_0|\chi\rangle=|\chi\rangle,\qquad
 B_0|\chi\rangle=B'_0|\chi\rangle,\qquad
 A_0B_0|\chi\rangle=-B_0|\chi\rangle.
+\end{aligned}
 \tag{5}
 ```
 
@@ -297,16 +307,18 @@ E&=E_p\cup E_q.
 \tag{7}
 ```
 
-These are the radius-$`2s`$ cell squares about $`p`$ and $`q`$.
+These are the cell squares of radius $`2s`$ about $`p`$ and $`q`$.
 
 All three thickened supports remain inside the patch. Indeed,
 
 ```math
+\begin{aligned}
 S_A^+\cup S_B^+\cup S_{B'}^+
 \subseteq
 [2s,27s-1]_{\mathbb Z}
 \times[s+1,23s-1]_{\mathbb Z}
 \subseteq\mathcal P.
+\end{aligned}
 \tag{8}
 ```
 
@@ -331,7 +343,9 @@ For $`R=0`$, the last interval is empty and the intersection is empty.
 The thickened closed string avoids both endpoint regions:
 
 ```math
+\begin{aligned}
 S_A^+\cap E=\varnothing.
+\end{aligned}
 \tag{10}
 ```
 
@@ -340,17 +354,21 @@ To verify (10) for $`E_p`$, examine the four bands in $`S_A^+`$. The left band h
 Define a partition of the patch by
 
 ```math
+\begin{aligned}
 U=S_B^+\setminus E,\qquad
 V=\mathcal P\setminus(E\cup U).
+\end{aligned}
 \tag{11}
 ```
 
 Equations (8)–(11) give
 
 ```math
+\begin{aligned}
 S_A^+\subseteq U\cup V,\qquad
 S_B^+\subseteq E\cup U,\qquad
 S_{B'}^+\subseteq E\cup V.
+\end{aligned}
 \tag{12}
 ```
 
@@ -369,10 +387,12 @@ B'=W^\dagger(B'_0\otimes I_{\rm aux})W.
 For any normalized $`|\chi\rangle`$ in the toric ground space tensored with an unrestricted auxiliary Hilbert space, put $`|\Omega\rangle=W^\dagger|\chi\rangle`$. Equations (5) and (12) give every hypothesis of Lemma 1. Therefore, for any cell-product reference vector on the patch,
 
 ```math
+\begin{aligned}
 \langle\Omega|
 \bigl(|0_{\mathcal P}\rangle\langle0_{\mathcal P}|\otimes I\bigr)
 |\Omega\rangle
 \le\frac{16}{17}.
+\end{aligned}
 \tag{13}
 ```
 

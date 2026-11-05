@@ -23,16 +23,20 @@ m_{L,r}(D)=
 and the explicit overlap bound
 
 ```math
+\begin{aligned}
 q_{L,r}(D)=
 \left(\frac{16}{17}\right)^{m_{L,r}(D)}.
+\end{aligned}
 \tag{1}
 ```
 
 **Theorem 1.** Every trace-preserving local circuit in this model satisfies
 
 ```math
+\begin{aligned}
 F:=\mathrm{Tr}(P_{\rm TC}\rho_{\rm out})
 \le q_{L,r}(D).
+\end{aligned}
 \tag{2}
 ```
 
@@ -45,7 +49,9 @@ The exponent counts disjoint braiding patches. It is not the number of measured 
 First condition on the shared seed. Purify each initially mixed local state by adjoining a purifying register at the same cell. The enlarged input is then a pure cell-product vector
 
 ```math
+\begin{aligned}
 |\boldsymbol 0\rangle=\bigotimes_{z\in\Lambda_L}|0_z\rangle.
+\end{aligned}
 \tag{3}
 ```
 
@@ -58,9 +64,11 @@ A local instrument with a retained classical outcome is itself a channel on the 
 The resulting global unitary will be denoted by $`W`$. It produces a purification of the original data output:
 
 ```math
+\begin{aligned}
 \rho_{\rm out}
 =\mathrm{Tr}_{\mathcal E}
 \left(W|\boldsymbol0\rangle\langle\boldsymbol0|W^\dagger\right),
+\end{aligned}
 \tag{4}
 ```
 
@@ -71,9 +79,11 @@ For clarity, the property of $`W`$ needed below is its support spread, rather th
 Iterating through the $`D`$ layers, with any intervening zero-radius on-site operations, gives the exact inclusion
 
 ```math
+\begin{aligned}
 \mathrm{supp}(W^\dagger O W)
 \subseteq N_{rD}(\mathrm{supp}O)
 =N_R(\mathrm{supp}O).
+\end{aligned}
 \tag{5}
 ```
 
@@ -90,20 +100,24 @@ P=P_{\rm TC}\otimes I_{\mathcal E}.
 If $`F=0`$, the theorem is immediate. Otherwise define the normalized vectors
 
 ```math
+\begin{aligned}
 |\chi\rangle
 =\frac{P W|\boldsymbol0\rangle}{\sqrt F},
 \qquad
 |\Omega\rangle=W^\dagger|\chi\rangle.
+\end{aligned}
 \tag{6}
 ```
 
 Equation (4) gives
 
 ```math
+\begin{aligned}
 \langle\boldsymbol0|\Omega\rangle
 =\frac{\langle\boldsymbol0|W^\dagger P W|\boldsymbol0\rangle}
 {\sqrt F}
 =\sqrt F.
+\end{aligned}
 \tag{7}
 ```
 
@@ -124,9 +138,11 @@ k=\left\lfloor\frac{L}{32s}\right\rfloor.
 If $`k=0`$, (2) is the trivial inequality $`F\le1`$. Otherwise use the $`k^2`$ disjoint patches
 
 ```math
+\begin{aligned}
 \mathcal P_{a,b}
 =(32sa,32sb)+\{0,1,\ldots,32s-1\}^2,
 \qquad 0\le a,b\lt k.
+\end{aligned}
 \tag{8}
 ```
 
@@ -144,10 +160,12 @@ be their initial product-vector projectors. The reference vectors are induced by
 Consider projecting $`P_1,P_2,\ldots`$ successively on $`|\Omega\rangle`$. If some prefix has zero probability, the joint probability of all projections is already zero. Otherwise, before step $`j`$ the normalized conditional state is
 
 ```math
+\begin{aligned}
 |\Omega_{j-1}\rangle
 =
 \frac{P_{j-1}\cdots P_1|\Omega\rangle}
 {\|P_{j-1}\cdots P_1|\Omega\rangle\|}.
+\end{aligned}
 \tag{9}
 ```
 
@@ -156,8 +174,10 @@ The three dressed strings for patch $`j`$ are wholly supported in $`\mathcal P_j
 Lemma 1 of the local braiding proof applies at every step and gives
 
 ```math
+\begin{aligned}
 \Pr(P_j=1\mid P_1=\cdots=P_{j-1}=1)
 \le\frac{16}{17}.
+\end{aligned}
 \tag{10}
 ```
 
@@ -198,26 +218,32 @@ a=\frac{\lambda}{8192}.
 If
 
 ```math
+\begin{aligned}
 L\ge64(rD+1),
+\end{aligned}
 \tag{11}
 ```
 
 then $`L/(32s)\ge2`$ and
 
 ```math
+\begin{aligned}
 m_{L,r}(D)
 \ge\left(\frac{L}{64s}\right)^2
 =\frac{N}{8192(rD+1)^2}.
+\end{aligned}
 \tag{12}
 ```
 
 Therefore
 
 ```math
+\begin{aligned}
 F\le
 2^{-aN/(rD+1)^2}
 \le
 2^{-aN/[r^2(D+1)^2]}.
+\end{aligned}
 \tag{13}
 ```
 
@@ -226,8 +252,10 @@ The second inequality uses $`r\ge1`$. For fixed interaction range, (13) is the a
 For statements that include small lattices and deep circuits, the exact floor in (1) is convenient. A useful uniform packing estimate is
 
 ```math
+\begin{aligned}
 m_{L,r}(D)+1
 \ge\frac{N}{8192(rD+1)^2}.
+\end{aligned}
 \tag{14}
 ```
 
