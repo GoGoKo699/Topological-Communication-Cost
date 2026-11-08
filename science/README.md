@@ -35,7 +35,7 @@ with an exact construction attaining the scaling. The added ones retain a valid 
 
 ## The noisy-report result
 
-Use the separate [noisy-report model](noisy-readout.md#1-physical-model-and-target): fixed local memory and report density, range-$`r`$ quantum operations, independent unflagged BSC reports, and free global classical processing of those reports. The physical output is still $`F=\operatorname{Tr}(P_{\mathrm{TC}}\rho)`$ after actual corrections. For a depth-$`T`$ competitor define
+Use the separate [noisy-report model](noisy-readout.md#1-physical-model-and-target): fixed local memory and report density, range-$`r`$ quantum operations, independent unflagged BSC reports, and free global classical processing of those reports. The physical output is still $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho)`$ after actual corrections. For a depth-$`T`$ competitor define
 
 ```math
 M=\left\lfloor\frac{L}{36(rT+1)}\right\rfloor^2,

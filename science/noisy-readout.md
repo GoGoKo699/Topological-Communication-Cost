@@ -36,7 +36,7 @@ A protocol has at most $`T`$ synchronous local layers on every branch, padded wi
 Every classical use of a fresh binary outcome $`x`$ crosses a site-local independent binary symmetric channel:
 
 ```math
-y=x\oplus e,\qquad \Pr(e=1)=p,\qquad 0<p<1/2.
+y=x\oplus e,\qquad \Pr(e=1)=p,\qquad 0\lt p\lt 1/2.
 ```
 
 There are at most $`\nu`$ potential binary report slots per cell and layer, where $`\nu\ge1`$ is a fixed positive integer. Every potential slot, including an unused one, has its own independent noise variable. No flip is reused. Instruments and subsequent gates may depend on all earlier public reports and shared randomness; reports from a layer become available for the next layer. The controller has unrestricted global classical computation and communication of these reports. It cannot see true outcomes, realized flips, or a flag identifying a truthful component of a detector decomposition. Outcome-dependent timing, measurement presence or another side interface cannot reveal an extra noiseless copy.
@@ -46,7 +46,7 @@ An outcome may remain in a local **quantum pointer**. Local gates may coherently
 The output criterion is the unconditional physical overlap
 
 ```math
-F=\operatorname{Tr}(P_{\mathrm{TC}}\rho_{\mathrm{out}}).
+F=\mathrm{Tr}(P_{\mathrm{TC}}\rho_{\mathrm{out}}).
 ```
 
 All report-dependent corrections have actually acted before $`\rho_{\mathrm{out}}`$ is evaluated. An unapplied Pauli-frame description, a selected syndrome sector, a signed observable estimator, small energy density and decoded logical fidelity with residual defects are different outputs. The theorem below concerns deterministic preparation under this unconditional criterion. Ideal coherent gates, storage, reset and QND pointer readout are used for the upper bound; only the public reports are noisy.
@@ -78,12 +78,12 @@ The two closed loops $`A_0,C_0`$ are contractible stabilizer products, and they 
 **Local test lemma.** Every depth-$`T`$ nonadaptive local CPTP circuit on a cell-product input obeys
 
 ```math
-\operatorname{Tr}(K\rho)\le c,\qquad c=16/17,
+\mathrm{Tr}(K\rho)\le c,\qquad c=16/17,
 ```
 
 when this patch fits. Local dimension, retained records and discarded environments are unrestricted.
 
-**Proof.** Purify the input separately at every cell and dilate each local channel while retaining its environment. This gives a unitary $`W`$ with support spread at most $`R`$ and a cell-product input $`|\boldsymbol0\rangle`$. If $`z=\operatorname{Tr}(K\rho)>0`$, define
+**Proof.** Purify the input separately at every cell and dilate each local channel while retaining its environment. This gives a unitary $`W`$ with support spread at most $`R`$ and a cell-product input $`|\boldsymbol0\rangle`$. If $`z=\mathrm{Tr}(K\rho)\gt 0`$, define
 
 ```math
 |\chi\rangle
@@ -112,8 +112,8 @@ The only change from the [full-code-space channel proof](channel-overlap.md) is 
 Take a square $`\mathcal B`$ of side $`b_{\mathrm{blind}}=36s`$. Put the side-$`32s`$ patch $`\mathcal P`$ at offset $`(2s,2s)`$ inside it. In the cyclic metric,
 
 ```math
-\operatorname{dist}_\infty(\mathcal P,\mathcal B^c)
-\ge2s+1>2R.
+\mathrm{dist}_\infty(\mathcal P,\mathcal B^c)
+\ge2s+1\gt 2R.
 ```
 
 Assume $`L\ge36s`$. Suppose every report originating in $`\mathcal B`$ is an independent fair coin, independent of the physical outcome and the preceding history. Outside $`\mathcal B`$, reports may follow the original BSC, fixed flip bits, fixed truthful/fair assignments, or mixtures of these alternatives.
@@ -123,8 +123,8 @@ Let $`H\ge0`$ be an effect on final quantum outputs outside $`\mathcal B`$; in p
 **Buffered lemma.** The translated core test satisfies
 
 ```math
-\operatorname{Tr}[(K\otimes H)\Omega]
-\le c\operatorname{Tr}[(I\otimes H)\Omega],
+\mathrm{Tr}[(K\otimes H)\Omega]
+\le c\mathrm{Tr}[(I\otimes H)\Omega],
 \qquad c=16/17.
 ```
 
@@ -168,7 +168,7 @@ M=\left\lfloor\frac{L}{36(rT+1)}\right\rfloor^2
 disjoint blind squares, with translated core tests $`K_1,\ldots,K_M`$. All tests commute, have disjoint supports, and are passed by every toric ground state. If a set $`J`$ of squares is blind, apply the buffered lemma successively with $`H`$ equal to the product of the preceding other-core tests. Their output supports are outside the current blind square and were retained before conditioning. Thus
 
 ```math
-F\le\operatorname{Tr}\!\left[\left(\prod_{j\in J}K_j\right)\rho\right]
+F\le\mathrm{Tr}\!\left[\left(\prod_{j\in J}K_j\right)\rho\right]
 \le c^{|J|}.
 ```
 
@@ -176,7 +176,7 @@ Each application may use its own positive refinement of the same public branch. 
 
 ## 4. Finite noisy-report converse
 
-For a BSC with $`0<p<1/2`$, each report can equivalently be produced by a hidden choice: report the true outcome with probability $`1-2p`$, or report an independent fair coin with probability $`2p`$. This is an analysis representation of the **unflagged** detector. Its hidden choice is never revealed to the controller.
+For a BSC with $`0\lt p\lt 1/2`$, each report can equivalently be produced by a hidden choice: report the true outcome with probability $`1-2p`$, or report an independent fair coin with probability $`2p`$. This is an analysis representation of the **unflagged** detector. Its hidden choice is never revealed to the controller.
 
 Presample independent choices at every potential slot, including idle slots. Each blind square has at most
 
@@ -195,20 +195,20 @@ F\le\left[1-\frac{(2p)^k}{17}\right]^M
 
 When $`M=0`$, this is the valid trivial bound $`F\le1`$. The argument covers arbitrary adaptive local channels and arbitrary finite local quantum dimension. The fixed report density is essential to $`k=O(T^3)`$.
 
-For a fixed target $`F\ge F_0>0`$, a fitting packing implies
+For a fixed target $`F\ge F_0\gt 0`$, a fitting packing implies
 
 ```math
 k\log\frac1{2p}
 \ge\log M-\log\!\left[17\log\frac1{F_0}\right].
 ```
 
-To obtain an explicit asymptotic order bound, take $`K_{r,\nu}=1296\nu(r+1)^2`$. For $`T\ge1`$, the slot count obeys $`k\le K_{r,\nu}T^3`$. Choose a constant $`a>0`$ with $`K_{r,\nu}a^3\log[1/(2p)]<1`$. If $`T\le a(\log L)^{1/3}`$, then for all sufficiently large $`L`$ the packing fits and $`\log M\ge\tfrac32\log L`$, whereas the left side of the preceding inequality is less than $`\log L`$. Its $`F_0`$-dependent additive constant cannot close this gap. This rules out every such $`T`$ for sufficiently large $`L`$. The case $`T=0`$ is also excluded at fixed positive target for large $`L`$ by the finite bound itself, and larger depths already satisfy the claimed order. Thus
+To obtain an explicit asymptotic order bound, take $`K_{r,\nu}=1296\nu(r+1)^2`$. For $`T\ge1`$, the slot count obeys $`k\le K_{r,\nu}T^3`$. Choose a constant $`a\gt 0`$ with $`K_{r,\nu}a^3\log[1/(2p)]\lt 1`$. If $`T\le a(\log L)^{1/3}`$, then for all sufficiently large $`L`$ the packing fits and $`\log M\ge\tfrac32\log L`$, whereas the left side of the preceding inequality is less than $`\log L`$. Its $`F_0`$-dependent additive constant cannot close this gap. This rules out every such $`T`$ for sufficiently large $`L`$. The case $`T=0`$ is also excluded at fixed positive target for large $`L`$ by the finite bound itself, and larger depths already satisfy the claimed order. Thus
 
 ```math
 T=\Omega_{p,F_0,r,\nu}\!\bigl((\log L)^{1/3}\bigr).
 ```
 
-For $`p>0`$, exact $`F=1`$ is impossible whenever a blind square fits. This is consistent with exact coherent preparation at linear depth, where the packing disappears. The rare-blind estimate is not uniform as $`p\to1/2`$; no uniform optimum is inferred from it.
+For $`p\gt 0`$, exact $`F=1`$ is impossible whenever a blind square fits. This is consistent with exact coherent preparation at linear depth, where the packing disappears. The rare-blind estimate is not uniform as $`p\to1/2`$; no uniform optimum is inferred from it.
 
 ## 5. Physically compress the syndrome before readout
 
@@ -290,8 +290,8 @@ independent reports, with one report per cell per readout layer. This explicitly
 Decode roots $`j=1,\ldots,B-1`$ by majority, using independent fair tie coins. Infer root $`0`$ from the exact even-total-parity identity. Its reports may be ignored. The majority error for $`m`$ reports is
 
 ```math
-e_m(p)=\Pr[\operatorname{Bin}(m,p)>m/2]
-+\frac12\Pr[\operatorname{Bin}(m,p)=m/2].
+e_m(p)=\Pr[\mathrm{Bin}(m,p)\gt m/2]
++\frac12\Pr[\mathrm{Bin}(m,p)=m/2].
 ```
 
 BSC symmetry and fair ties make this error independent of the true root value. Errors for the $`B-1`$ independently decoded roots are independent. The controller computes an edge set $`\widehat E`$ satisfying $`\partial\widehat E=\iota(\widehat r)`$, for example using the [coarse comb tree](preparation.md#6-fixed-nonlocal-collection-and-return-traffic). Its existence follows because the inferred syndrome is even.
@@ -312,10 +312,10 @@ This averages all original quantum branches, all noisy reports and all tie coins
 Write
 
 ```math
-\mathcal D(p)=-\frac12\log[4p(1-p)]>0.
+\mathcal D(p)=-\frac12\log[4p(1-p)]\gt 0.
 ```
 
-For $`a>0`$, the exponential Markov bound gives $`\Pr[\operatorname{Bin}(m,p)\ge m/2]\le[e^{-a/2}(1-p+pe^a)]^m`$. Minimizing at $`e^a=(1-p)/p`$ yields $`[2\sqrt{p(1-p)}]^m=e^{-\mathcal D(p)m}`$. The fair-tie majority error is no larger than this tail probability. Therefore
+For $`a\gt 0`$, the exponential Markov bound gives $`\Pr[\mathrm{Bin}(m,p)\ge m/2]\le[e^{-a/2}(1-p+pe^a)]^m`$. Minimizing at $`e^a=(1-p)/p`$ yields $`[2\sqrt{p(1-p)}]^m=e^{-\mathcal D(p)m}`$. The fair-tie majority error is no larger than this tail probability. Therefore
 
 ```math
 1-F_{\mathrm{phys}}
@@ -343,7 +343,7 @@ Take $`t=b`$. Then $`T\le17b-4`$ and
 \le\frac{L^2}{b^2}e^{-\mathcal D(p)b^3}.
 ```
 
-For any $`0<\epsilon<1`$, choose $`b`$ of order $`[\log(L^2/\epsilon)/\mathcal D(p)]^{1/3}`$, rounded up, while this scale is below $`L`$. The last display is at most $`\epsilon`$ after an appropriate constant choice. If that choice reaches $`L`$, use the exact one-block sweep. At fixed $`p`$ and fixed $`\epsilon`$, this is $`O_{p,\epsilon}((\log L)^{1/3})`$.
+For any $`0\lt \epsilon\lt 1`$, choose $`b`$ of order $`[\log(L^2/\epsilon)/\mathcal D(p)]^{1/3}`$, rounded up, while this scale is below $`L`$. The last display is at most $`\epsilon`$ after an appropriate constant choice. If that choice reaches $`L`$, use the exact one-block sweep. At fixed $`p`$ and fixed $`\epsilon`$, this is $`O_{p,\epsilon}((\log L)^{1/3})`$.
 
 Together with Section 4, this proves for every fixed $`p\in(0,1/2)`$ and $`F_0\in(0,1)`$,
 
