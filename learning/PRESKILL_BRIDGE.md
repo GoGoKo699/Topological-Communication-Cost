@@ -1,10 +1,12 @@
 # From Preskill's quantum error correction chapter to topological communication cost
 
-This bridge connects the stabilizer description of a toric code to the cost of preparing its physical state. The question is: after allowing local quantum operations and local classical propagation for depth $`D`$, how many classical bits must still travel outside those local layers?
+This bridge connects the stabilizer description of a toric code to two costs of preparing its physical state. The question is: after allowing local quantum operations and local classical propagation for depth $`D`$, how many classical bits must still travel outside those local layers?
 
 The educational anchor is John Preskill, [*Quantum Information*, Chapter 7: *Quantum Error Correction*, March 2026 author draft](https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf), listed on the [author's course page](https://www.preskill.caltech.edu/ph219/index.html). The chapter supplies the code language. The preparation model, probability accounting, and quantitative bounds developed below come from this project's [science pages](../science/README.md) and their [research references](../references/related-work.md).
 
-The [milestone map](MILESTONES.md) gives a dependency order for the material. This page supplies the explanations, conventions, and a complete finite example.
+The [milestone map](MILESTONES.md) gives a dependency order for the material. This page supplies the explanations, conventions, and complete finite examples.
+
+A second question uses the same target but a different classical interface: **if only the measurement reports are noisy, how much local operation depth prepares a reliable physical toric state at fixed memory density?** The [joint noisy-readout account](../science/noisy-readout.md) establishes cube-root logarithmic depth for fixed detector quality and fixed positive target overlap. It combines the local topological obstruction developed here with the retained-record and protected-pointer methods of [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits). The sections below teach the extra steps; Preskill's chapter is the common educational source, not the source of either resource theorem.
 
 ## Source map
 
@@ -13,6 +15,7 @@ The table gives section starting pages. Printed page $`p`$ is physical PDF page 
 | Chapter section | Printed page / PDF page | Connection developed here |
 |---|---:|---|
 | §7.2; §§7.3.2–7.3.3 | 4 / 10; 9 / 15 | [Channels and environments](#local-channels-and-correlated-environments) |
+| §7.6 | 18 / 24 | Classical redundancy for protected pointer reports |
 | §7.7 | 21 / 27 | Separate $`X`$ and $`Z`$ checks |
 | §§7.10.1–7.10.2 | 27 / 33; 30 / 36 | [Stabilizers and commutation](#stabilizers-and-logical-labels) |
 | §7.10.4 | 33 / 39 | Logical Pauli operators |
@@ -23,6 +26,23 @@ The table gives section starting pages. Printed page $`p`$ is physical PDF page 
 | §7.20 | 63 / 69 | Strings and energy barriers |
 
 The last two sections give geometric background. Their code-parameter and thermal-memory questions are distinct from the preparation-resource theorem here.
+
+## Two resource models for the same physical target
+
+Both tasks start from a product across toric cells, allow local channels, and assess $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho_{\mathrm{out}})`$ after corrections are physically applied. The information rules differ:
+
+| Rule | Charged-communication frontier | Noisy-report depth theorem |
+|---|---|---|
+| Local quantum processing | Depth $`D`$; fixed range $`r`$ | Depth $`T`$; fixed range $`r`$ |
+| New classical outcome information | Private local records may be processed locally | Every outcome supplied to classical control crosses its own independent BSC |
+| Global feedforward | Count delivered nonlocal bits, including return instructions | Processing and communication of already public reports are free |
+| Readout resources | No detector-noise theorem is assumed | At most $`\nu`$ binary slots per cell per layer; readout layers count |
+| Matching construction's quantum memory | Explicit local preparation registers | Two data qubits and one reusable pointer per cell |
+| Ideal quantum hardware | Channels and chosen gates follow the stated model | Gates, reset, dephasing, storage, and QND pointer readout are ideal |
+
+A BSC report has the form $`y=x\oplus e`$, where $`x`$ is the true pointer value and $`e`$ is a fresh independent flip of probability $`p`$. “Unflagged” means the controller receives $`y`$ without learning $`e`$ or which reports were randomized. A true pointer may remain as a local quantum register and control a nearby counted gate. It is never provided noiselessly as classical advice to the global controller.
+
+The charged theorem therefore cannot be converted to the noisy theorem by replacing bits with detector uses. Conversely, the noisy construction's simultaneous globally chosen Pauli corrections use free public feedforward; they are not a zero-cost correction protocol in the charged model. The respective [model](../science/model.md) and [noisy-readout account](../science/noisy-readout.md) make that boundary precise.
 
 ## Stabilizers and logical labels
 
@@ -464,6 +484,175 @@ For the unconditional states, star measurement alone gives $`F=2^{-15}`$; local 
 
 The [construction verifier](../tools/verify_construction.py) reproduces the $`14`$ layers, four messages, net edge set, and boundary. Checking its eight root-parity inputs gives the eight distinct transcripts $`0000,0011,0100,0111,1000,1011,1100,1111`$. This finite example illustrates the construction and accounting. Its lattice is too small for the explicit braiding-patch exponent to be nontrivial.
 
+## The local two-loop test
+
+The original converse projects onto the entire toric ground space. A locally blind region needs a test supported strictly inside that region. Use the closed $`X`$ cut $`A_0`$ and the two alternative open $`Z`$ strings $`B_0,B'_0`$ from the braiding patch. Their product $`C_0=B_0B'_0`$ is a closed stabilizer loop. The two closed loops commute, so
+
+```math
+K=\frac{I+A_0}{2}\frac{I+C_0}{2}
+```
+
+is a projector, with $`P_{\mathrm{TC}}\preceq K`$. These are local contractible loop constraints; no logical-sector eigenvalue is tested.
+
+A vector in the range of $`K`$ satisfies $`A_0\chi=\chi`$ and $`B_0\chi=B'_0\chi`$. The operator relation $`A_0B_0=-B_0A_0`$ supplies the third braiding identity. Projecting a local-channel output onto $`K`$ and pulling it back through a local dilation therefore reuses the dimension-independent inequality already explained above. On a side-$`32(R+1)`$ core, with $`R=rT`$, every fixed-schedule depth-$`T`$ local CPTP circuit from a cell-product input obeys
+
+```math
+\mathrm{Tr}(K\rho)\le c,\qquad c=\frac{16}{17}.
+```
+
+The geometry and algebra are inherited from the [local braiding account](../science/local-braiding.md), which credits Li–Lee–Yoshida. The extra question is whether this deficit survives arbitrary outside records and global report-dependent control.
+
+## Buffered blindness with outside records
+
+Place that core inside a square blind block of side $`36(R+1)`$, offset by $`2(R+1)`$ cells on each side. The distance from the core to the block's complement is greater than $`2R`$. Suppose every report originating in the block is a fair coin independent of its true outcome. Outside reports may still be informative.
+
+Freeze a full public history. This fixes all public choices of gates, instruments, and support schedules. An inside fair report has probability $`1/2`$ regardless of the true outcome; summing that outcome gives the corresponding nonselective CPTP instrument. Retained pointer outputs and later local pointer-controlled gates remain in this channel.
+
+Outside outcomes require a different order of operations. A selected outside instrument is trace decreasing. One cannot remove it using the trace-preserving cancellation valid for an averaged measurement. Instead complete it to the CPTP map
+
+```math
+\mathcal J(X)=\sum_x\mathcal I_x(X)\otimes|x\rangle\langle x|_{\mathsf R},
+```
+
+and retain its outcome register $`\mathsf R`$ at the place and time of creation. Retain every outside final system on which a later test will act. These mathematical registers are used only to recover the branch weights; they create no extra control interface.
+
+The core's backward quantum cone and the cones of those outside retained histories are disjoint because of the buffer. After unretained trace-preserving operations are canceled, the fixed-history CPTP state factors between the core and those outside outputs. **Now** select the outside record values and apply any positive outside effect $`H`$. Their contribution is a nonnegative scalar multiplying the core state, so the uniform local deficit survives:
+
+```math
+\mathrm{Tr}(KH\Omega)\le c\,\mathrm{Tr}(H\Omega).
+```
+
+Here $`\Omega`$ is the subnormalized physical output selected by any public-history event, and $`K,H`$ act on disjoint supports. The actual adaptive output need not factor. The proof needs only the CPTP factorization before outside selection. This retained-record discipline is the ingredient imported from the [blind-strip proof of Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits/blob/10ec6b4ebfdd3f6dc20e83a7e73d8b36126e9c0b/science/blind_strip.md).
+
+## From blind cores to a depth bound
+
+Pack
+
+```math
+M=\left\lfloor\frac{L}{36(rT+1)}\right\rfloor^2
+```
+
+disjoint blind blocks. Apply the previous trace inequality successively, taking $`H`$ to include already selected tests in other blocks. If $`j`$ blocks have blind reports, the output passes all their core tests with probability at most $`c^j`$. This multiplication does not assume independent quantum core marginals.
+
+A BSC has a useful hidden representation: with probability $`1-2p`$ it reports the true value, and with probability $`2p`$ it reports an independent fair bit. The controller does not receive the choice flag. Pad each block to its allowed maximum
+
+```math
+k=\nu[36(rT+1)]^2T
+=1296\nu(rT+1)^2T
+```
+
+potential report slots, including unused slots. All $`k`$ hidden choices are fair with probability $`(2p)^k`$, independently for disjoint spatial blocks. Average the conditional $`c^j`$ bound over this flag table:
+
+```math
+F\le\left[1-\frac{(2p)^k}{17}\right]^M
+\le\exp\!\left[-\frac{M(2p)^k}{17}\right].
+```
+
+For fixed $`p,r,\nu`$ and a fixed required $`F\ge f>0`$, there are of order $`L^2/T^2`$ spatial opportunities for blindness, while each block contains only $`O(T^3)`$ detector slots. Keeping their total failure probability bounded forces $`T^3=\Omega(\log L)`$. If no block fits, the finite bound is simply $`F\le1`$; that regime is already at linear depth in $`L`$. Together these cases give the fixed-parameter lower order.
+
+The finite estimate is sufficient for the fixed-detector theorem. Its constants are not uniform as the detector becomes uninformative. The [full noisy-readout account](../science/noisy-readout.md) keeps that limitation separate from the matched fixed-parameter conclusion; it does not establish a uniformly matched crossover in $`p`$, accuracy, and the linear-depth cap.
+
+## Physical compression before readout
+
+Protecting every raw star report separately wastes the blocks that local gates can already correct. First extract the true star syndrome coherently into one pointer per vertex. Site-local dephasing of those pointers, with no public outcome, gives
+
+```math
+2^{-(L^2-1)}
+\sum_{s:\,\oplus_v s_v=0}
+|\psi_s\rangle\langle\psi_s|_{\mathsf D}
+\otimes|s\rangle\langle s|_{\mathsf A}.
+```
+
+The canonical data branch $`|\psi_s\rangle`$ has star syndrome $`s`$, all plaquettes $`+1`$, and both selected logical $`Z`$ labels $`+1`$. The branches satisfy
+
+```math
+Z(E)|\psi_s\rangle=|\psi_{s\oplus\partial E}\rangle.
+```
+
+Partition the torus into balanced rectangles with side lengths in $`[b,2b-1]`$. Use the local comb sweep of the original preparation, but implement each step through the pointers. For a child and parent with consistent data/pointer bits $`(a,b')`$, apply:
+
+1. CNOT from child pointer to parent pointer.
+2. Child-pointer-controlled $`Z`$ on the shared data edge.
+3. Reset the child pointer to zero without exposing a report.
+
+The data's child syndrome becomes zero; the parent's data and pointer both become $`a\oplus b'`$. The child pointer remains unchanged until it has controlled the edge correction. Reset then transfers its discarded detail to an inaccessible environment. Three elementary layers implement this step on disjoint scheduled cell pairs.
+
+Induction leaves every nonroot star satisfied, every nonroot pointer zero, and each root pointer equal to its **actual remaining data defect**. If there are $`B=\lfloor L/b\rfloor^2`$ blocks, the root vector is uniform on the even $`B`$-bit subspace. The controller will need only $`B-1`$ independent bits.
+
+This is physical syndrome compression. Computing a parity of already noisy raw reports would not satisfy the data/pointer invariant. For comparison, correcting an estimate formed from $`L^2-1`$ independently reported raw syndrome bits succeeds with probability $`(1-p)^{L^2-1}`$ in the simple one-report scheme. Discarding entropy is useful here because the local gates have already removed the corresponding physical defects.
+
+## Protected pointer readout and the delivered state
+
+The nonroot pointers freed by compression provide a readout bank without increasing quantum memory. Copy a root's orthogonal basis value along its row and then up the columns. This fills its rectangle of area $`A_j\ge b^2`$ in $`O(b)`$ local layers. It copies one classical basis label, rather than cloning an arbitrary unknown state.
+
+Read every pointer copy nondestructively for $`t`$ rounds. Every true value in that block is the same root bit; each public report has its own independent flip. Root $`j`$ therefore has $`A_jt`$ reports. Majority with a fair random tie has error
+
+```math
+e_m(p)=\Pr[\mathrm{Bin}(m,p)>m/2]
++\frac12\Pr[\mathrm{Bin}(m,p)=m/2]
+\le e^{-\mathcal D(p)m},
+\qquad
+\mathcal D(p)=-\frac12\log[4p(1-p)].
+```
+
+The Chernoff exponent and pointer amplification are established ingredients attributed in the [related-work account](../references/related-work.md) and in Readout Entanglement Limits. The local implementation and available block area are essential to their use here.
+
+Decode $`B-1`$ roots and infer the final root from the exact even-parity constraint. Compute a physical edge set whose boundary is the estimated root syndrome. In this model free global classical feedforward permits every chosen single-qubit $`Z`$ correction to be applied in one counted layer. The same statement would require transported return instructions in the charged-communication model.
+
+After these actual gates the residual syndrome is the true root vector XOR its estimate. It vanishes exactly when every independently decoded root is correct, so
+
+```math
+F_{\mathrm{phys}}
+=\prod_{j=1}^{B-1}[1-e_{A_jt}(p)],
+\qquad
+1-F_{\mathrm{phys}}
+\le(B-1)e^{-\mathcal D(p)b^2t}.
+```
+
+Several wrong root estimates do not become harmless merely because their parity is even: they still leave nonzero physical star defects. The formula averages every true syndrome, report error, and tie coin. It is neither success-conditioned fidelity nor a Pauli-frame claim.
+
+## Small protected-readout example
+
+Take $`L=4`$, four $`2\times2`$ blocks, $`t=3`$ readout rounds, and $`p=1/10`$. There are 32 data qubits and 16 reusable pointers, hence 48 quantum memory qubits. Each root is copied to its four pointer sites and receives 12 reports; all four blocks together use 48 report slots. Decode three roots and infer the fourth from even parity.
+
+For one root,
+
+```math
+e_{12}(1/10)=\frac{1848163}{6250000000}
+=0.00029570608.
+```
+
+The unconditional corrected physical overlap is therefore
+
+```math
+F_{\mathrm{phys}}=[1-e_{12}(1/10)]^3
+\approx0.9991131441.
+```
+
+The general conservative schedule gives $`T\le16b+t-4=31`$ layers. It includes coherent extraction, dephasing, local compression, pointer fanout, three readouts, and the final physical correction. This finite example illustrates the exact ensemble and resource accounting; its lattice is too small for the explicit blind-core lower bound to be nontrivial. It is also a different implementation and classical interface from the earlier four-message example.
+
+## The fixed-detector preparation law
+
+For general balanced blocks, coherent extraction takes at most ten elementary layers. Write $`d_{\mathrm{sweep}}\le4b-4`$ for the number of child-parent levels in the row/column schedule. Dephasing, compression, fanout, QND readout, and final correction yield
+
+```math
+T\le10+1+3d_{\mathrm{sweep}}+d_{\mathrm{sweep}}+t+1
+\le16b+t-4.
+```
+
+This construction uses exactly three qubits per cell, nearest-neighbor gates, and one report per cell per readout round. Choose $`t=b`$. Then its depth is $`O(b)`$ and its decoding failure bound is $`(B-1)e^{-\mathcal D(p)b^3}`$. At fixed $`p`$ and target $`F_0\in(0,1)`$, taking $`b`$ of order $`(\log L)^{1/3}`$ makes the physical output meet that target. A single block gives the exact ordinary linear-depth fallback without noisy root decoding.
+
+Combining this construction with the independent blind-core lower bound establishes
+
+```math
+T_{\mathrm{det}}(L,p;F_0)
+=\Theta_{p,F_0}\!\left((\log L)^{1/3}\right)
+```
+
+for fixed range/report density and an admissible fixed local-memory budget containing the three-qubit construction. The lower bound permits arbitrary larger finite local Hilbert spaces at the same report density.
+
+Only reports are noisy. Reliable gates, storage, dephasing and reset are central to the construction. Repeatable QND pointer readout is also an explicit resource: a destructive detector can use an additional reusable readout qubit per cell, keeping constant density but changing the exact three-qubit implementation. Neither version establishes noisy-gate fault tolerance or a finite-speed classical-latency theorem.
+
 ## What the chapter does and does not supply
 
 The chapter provides the stabilizer, logical-operator, and chain language in the source map. The following ingredients are supplied by the project and its primary research antecedents:
@@ -476,8 +665,10 @@ The chapter provides the stabilizer, logical-operator, and chain language in the
 | Positive branch domination and hard/mean transcript bounds | [Communication bound](../science/communication-bound.md) |
 | Local compression, collected and returned messages, physical correction | [Preparation](../science/preparation.md) |
 | What follows under an additional aggregate-throughput assumption | [Consequences](../science/consequences.md) |
+| Buffered two-loop test and retained outside-record conditioning | [Noisy readout](../science/noisy-readout.md) |
+| Fixed-memory pointer compression, protected reports, and physical overlap | [Noisy readout](../science/noisy-readout.md) |
 | Which mechanisms and results are inherited | [Related work](../references/related-work.md) |
 
-The theorem addresses unconditional global ground-space overlap from spatially unentangled initial resources. It allows arbitrary finite local ancillas and local channels, and requires a depth cap on every branch. The construction is exact in that circuit model; it does not analyze faulty measurement or gate noise.
+Both results address unconditional global ground-space overlap from spatially unentangled initial resources, with a depth cap on every branch. The charged-communication construction is exact in its stated circuit model. The noisy-report extension has a matching fixed-detector depth theorem at constant quantum-memory density, with ideal gates/storage and independent imperfect classical reports. Neither upper construction establishes a noisy-gate fault-tolerance threshold.
 
 A low density of violated checks is a different target from global ground-space weight. A classical description of a future correction is a different output from an already corrected data state. A bit budget is also distinct from laboratory latency: signal speed, controller runtime, and aggregate bandwidth require their own physical assumptions. These distinctions determine where the matched communication–depth frontier applies.

@@ -1,6 +1,6 @@
 # Related work and attribution
 
-The result studied here is an optimal tradeoff between local propagation and the amount of nonlocal classical information used to prepare a physically corrected toric-code ground state. Its main topological obstruction is inherited. The additional step is to turn that obstruction into a communication bound that retains branch probabilities, remains valid with arbitrary local channels and discarded environments, and matches a compressed correction protocol.
+The principal result studied here is an optimal tradeoff between local propagation and the amount of nonlocal classical information used to prepare a physically corrected toric-code ground state. Its main topological obstruction is inherited. The additional step is to turn that obstruction into a communication bound that retains branch probabilities, remains valid with arbitrary local channels and discarded environments, and matches a compressed correction protocol. A separate [noisy-report result](../science/noisy-readout.md) combines that local obstruction and physical syndrome removal with the outside-record and protected-pointer methods of [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits). It establishes fixed-detector depth $`\Theta((\log L)^{1/3})`$ under a different resource model.
 
 The corresponding bibliographic entries are in [bibliography.bib](bibliography.bib).
 
@@ -13,6 +13,8 @@ The corresponding bibliographic entries are in [bibliography.bib](bibliography.b
 | Tantivasadakarn–Vishwanath–Verresen | Locally correctable measurement protocols can be coherified; clean toric preparation requires nonlocal dependence | Supplies the qualitative local-feedforward obstruction |
 | Friedman–Yin–Hong–Lucas | Diameter versus time and number of utilized measurement regions | Gives a different resource bound, including a toric-code application |
 | Present result | At fixed ground-space overlap, $`(C+1)(D+1)^2=\Omega(N)`$, attained up to constants | Prices the actual nonlocal binary transcript after arbitrary local processing |
+| Readout Entanglement Limits | One-dimensional blind strips and protected readout yield a matched Bell-pair depth law under unflagged BSC reports | Supplies outside-record retention, the detector interface and spatial/temporal pointer readout |
+| Joint noisy-report result | Fixed-detector toric preparation depth $`\Theta((\log L)^{1/3})`$ with physical corrections | Adds buffered local two-loop tests and a valid constant-memory quantum syndrome-compression channel |
 
 ## BHV06 and KP14: local preparation limits
 
@@ -103,6 +105,22 @@ The present task starts from spatially unentangled quantum inputs and permits ou
 ## Related open research records
 
 The following are versioned research repositories, not cited as peer-reviewed publications.
+
+### Readout Entanglement Limits: a consequential two-dimensional transfer
+
+R. Lin, [*Readout Entanglement Limits*, revision `10ec6b4`](https://github.com/GoGoKo699/Readout-Entanglement-Limits/tree/10ec6b4ebfdd3f6dc20e83a7e73d8b36126e9c0b), studies a line of fixed-memory sites with local quantum gates, a fixed density of independent unflagged BSC reports, and free global classical processing of those reports. The output is an actually corrected physical Bell pair. At fixed detector quality and fixed Bell overlap above the separable threshold it establishes depth $`\Theta(\sqrt{\log L})`$, with a stronger uniform parameter law in its own one-dimensional model.
+
+Its [blind-strip proof](https://github.com/GoGoKo699/Readout-Entanglement-Limits/blob/10ec6b4ebfdd3f6dc20e83a7e73d8b36126e9c0b/science/blind_strip.md) retains outside true-outcome registers in a CPTP completion before selecting them. That step controls outside postselection in an adaptive circuit. Its [construction](https://github.com/GoGoKo699/Readout-Entanglement-Limits/blob/10ec6b4ebfdd3f6dc20e83a7e73d8b36126e9c0b/science/construction.md) copies orthogonal local pointers over a spatial region and reads each copy repeatedly. Its [noise-table comparison](https://github.com/GoGoKo699/Readout-Entanglement-Limits/blob/10ec6b4ebfdd3f6dc20e83a7e73d8b36126e9c0b/science/information_bound.md) compares the original unflagged detector with undisclosed blind-region alternatives. These inherited methods are credited there rather than presented as new two-dimensional discoveries.
+
+The receiving task differs in an essential way. Toric ground-space membership is not a Bell-fidelity witness, and a single blind disk does not divide a plane into two disconnected half-chains. The valid replacement uses the local commuting test $`K=(I+A_0)(I+B_0B'_0)/4`$. Its range supplies the exact braiding/deformation identities of our [local algebra lemma](../science/local-braiding.md), giving a constant failure probability in a core. A spatial buffer makes its backward history disjoint from the retained outside measurement histories and other-core test outputs. This justifies multiplication of blind-core penalties without assuming independent adaptive marginals. It is the [new two-dimensional converse](../science/noisy-readout.md#3-buffered-blind-core-lemma).
+
+The construction also needs more than transferring the one-dimensional readout exponent. A local CNOT/controlled-$`Z`$/reset sweep first removes actual nonroot defects and leaves only one consistent quantum syndrome pointer per block. Orthogonal copies of that pointer can then occupy block area and be read over time. The full schedule uses three qubits per toric cell and one report per cell/layer; the exact overlap after actual Pauli correction is $`\prod_{j=1}^{B-1}[1-e_{A_jt}(p)]`$. This audits the physical object handed to protected readout. Merely compressing noisy classical reports or asking the controller to know every original syndrome would give a different problem.
+
+Together these arguments establish fixed-$`p`$, fixed-$`F_0\in(0,1)`$ depth $`\Theta((\log L)^{1/3})`$. The authoritative full proof is [maintained here](../science/noisy-readout.md), with an independently readable [sister account](https://github.com/GoGoKo699/Readout-Entanglement-Limits/blob/main/science/toric_extension.md). The inherited toric source is [revision `47e2a26`](https://github.com/GoGoKo699/Topological-Communication-Cost/tree/47e2a2632a939c96546b199b3ff08a1cd059f194). The local braiding and spatial exponent still trace to LLY25, and standard syndrome extraction/correction still trace to the measurement-assisted preparation sources above.
+
+This joint consequence is additional to the charged-transcript frontier, not a specialization of it. Public report communication is free in the receiving noisy-report model. Only reports are noisy; ideal coherent gates, reset, storage and QND pointer readout are used for achievability. A uniform two-dimensional detector-quality/accuracy crossover, noisy-data threshold or finite-speed classical-control theorem is not established. The companion project's existing one-dimensional uniform theorem is retained in its own model and is not imported as a two-dimensional law.
+
+### Other operational comparisons
 
 R. Lin, [*GHZ Communication Cost*](https://github.com/GoGoKo699/GHZ-Communication-Cost/tree/99bd0004bcd1b395d27bff9b092db64dc0672c24), considers arbitrary independent bipartite quantum sources and unrestricted processing within each laboratory. Its branch, finite-transcript, and expected-cost arguments supply closely related probability-sensitive communication accounting. For a qubit GHZ target it proves extensive communication at fidelity above the product-state baseline $`1/2`$, using a quantum Finner constraint.
 

@@ -2,7 +2,7 @@
 
 The [communication converse](communication-bound.md) and [preparation protocol](preparation.md) determine how much nonlocal classical information can be replaced by local processing. The target is a physically prepared toric-code ground-space state, measured by the unconditional overlap $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho)`$.
 
-Throughout this page, the local interaction range $`r`$ and required overlap $`f\in(0,1]`$ are fixed. Constants may depend on them. The system contains $`N=2L^2`$ data qubits. Local depth includes both quantum operations and local classical propagation; $`C`$ counts the additional nonlocal classical bits in the [protocol model](model.md).
+Sections 1–5 use the charged-communication model: the local interaction range $`r`$ and required overlap $`f\in(0,1]`$ are fixed, and constants may depend on them. The system contains $`N=2L^2`$ data qubits. Local depth includes both quantum operations and local classical propagation; $`C`$ counts the additional nonlocal classical bits in the [protocol model](model.md). Section 6 separately describes the noisy-report theorem, whose global public classical communication is free.
 
 ## 1. An optimal exchange of resources
 
@@ -119,8 +119,25 @@ Measuring all star checks can leave a state with random anyon defects together w
 
 This distinction also matters for postselection. The converse applies to a selected subnormalized output through its unconditional contribution $`p f_{\mathrm{cond}}`$. A matching *operationally heralded* tradeoff would additionally have to deliver a trustworthy success flag. Simply selecting that all uncommunicated root syndromes vanish does not account for the communication needed to certify that event.
 
-The present result gives no noise threshold and no general theorem for continuous-time dynamics with nonzero light-cone tails. Its exact scope is finite local circuits, charged nonlocal classical communication, and global toric-ground-space overlap. Within that scope, the matching bounds determine an optimal resource frontier without restricting the preparation to stabilizer operations or a particular decoder.
+The charged-communication result gives no noise threshold and no general theorem for continuous-time dynamics with nonzero light-cone tails. Its exact scope is finite local circuits, charged nonlocal classical communication, and global toric-ground-space overlap. Within that scope, the matching bounds determine an optimal resource frontier without restricting the preparation to stabilizer operations or a particular decoder.
+
+## 6. Independent report noise changes the depth law
+
+The [noisy-readout theorem](noisy-readout.md), developed with [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits), uses a separate resource convention. Classical processing and communication of public reports are free; every fresh outcome reaches that interface through its own unflagged BSC. Local quantum depth, memory density and report-slot density remain constrained. Corrections are physically applied.
+
+Under ideal coherent gates, storage, reset and QND pointer readout, three memory qubits per cell and one report per cell per readout layer suffice to achieve
+
+```math
+T_{\mathrm{opt}}(L,p;F_0)
+=\Theta_{p,F_0}\!\bigl((\log L)^{1/3}\bigr)
+```
+
+for fixed $`p\in(0,1/2)`$ and $`F_0\in(0,1)`$. The lower bound permits arbitrary adaptive local channels and still larger finite local dimensions, provided the range and report density remain fixed.
+
+The root of the exponent is operational: local coherent sweeps remove all but one defect per block, then an area of $`\Theta(b^2)`$ orthogonal pointer copies supplies $`\Theta(b^2t)`$ independent noisy reports in $`O(b+t)`$ depth. The converse uses a buffered two-loop test and retains outside outcome registers before conditioning; a blind space-time core contains $`O(T^3)`$ potential reports. Neither a raw-syndrome entropy count nor a dimensional analogy alone proves this law.
+
+The $`(\log L)^{1/3}`$ operation-depth law is distinct from the conditional $`N^{1/3}`$ ideal-bandwidth elapsed-time law in Section 4. Its constants are fixed-detector constants. No uniform crossover, gate-noise threshold, bounded classical latency or purely frame-described output is certified.
 
 ## Reading onward
 
-The full proofs are in [local braiding](local-braiding.md), [channel overlap](channel-overlap.md), and [communication bounds](communication-bound.md). The [construction](preparation.md) gives the physical schedule and its message count. [Related work](../references/related-work.md) separates the inherited braiding, measurement-feedback and communication ingredients from the operational frontier proved here.
+The charged-communication proofs are in [local braiding](local-braiding.md), [channel overlap](channel-overlap.md), and [communication bounds](communication-bound.md). The [construction](preparation.md) gives the physical schedule and its message count. The [separate noisy-readout account](noisy-readout.md) contains its own model, full buffered proof, quantum compression channel, readout schedule and exact physical overlap. [Related work](../references/related-work.md) separates the inherited ingredients from the two operational consequences.

@@ -1,6 +1,6 @@
 # Topological Communication Cost
 
-**How much nonlocal classical information is needed to prepare topological order quickly?** This project determines the optimal scaling between local circuit depth and communicated classical bits for physical toric-code ground-state preparation.
+**How much nonlocal classical information is needed to prepare topological order quickly?** This project determines the optimal scaling between local circuit depth and communicated classical bits for physical toric-code ground-state preparation. A separate noisy-report theorem determines the preparation depth when public classical communication is free but every local measurement report has an independent unflagged error.
 
 The system has $`N=2L^2`$ data qubits on an $`L\times L`$ torus. It starts without entanglement between lattice cells. Local quantum channels, measurements, private records, resets and arbitrary finite local ancillas are permitted. Local propagation consumes depth $`D`$; classical information sent outside those local layers consumes bits $`C`$. The output is the corrected quantum state itself, with unconditional ground-space weight $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho)`$.
 
@@ -25,6 +25,19 @@ At the wholly local endpoint, $`C=0`$ and $`D\le2L+8`$. Both the collection of b
 | Constant depth | Order $`N`$ bits | Constant-size blocks |
 | Growing depth $`D=o(L)`$ | Order $`N/(D+1)^2`$ bits, up to depth rescaling by constants | Blocks with side proportional to $`D`$ |
 | Depth of order $`L`$ | Zero nonlocal bits are possible | A full-lattice local syndrome sweep |
+
+## Sister result: independent report noise
+
+With [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits), the local braiding obstruction and physical syndrome sweep combine with retained outside outcome registers and protected-pointer readout. The [complete two-dimensional account](science/noisy-readout.md) proves, at fixed $`p\in(0,1/2)`$ and fixed target physical overlap $`F_0\in(0,1)`$,
+
+```math
+T_{\mathrm{opt}}(L,p;F_0)
+=\Theta_{p,F_0}\!\bigl((\log L)^{1/3}\bigr).
+```
+
+The converse blinds buffered cores of a local two-loop stabilizer test, retaining all outside outcome registers before conditioning. The matching construction physically compresses true syndrome defects to block roots, copies their orthogonal quantum pointers, and applies the actual decoded corrections. It uses three memory qubits per cell, nearest-neighbor gates and at most one report per cell per readout layer. Global processing of already public reports is free; gates and storage are ideal. This model differs from the charged-bit model above, and no uniform detector-quality/accuracy crossover is claimed.
+
+The new two-dimensional proof is maintained here; the sister's [companion account](https://github.com/GoGoKo699/Readout-Entanglement-Limits/blob/main/science/toric_extension.md) gives its independent definitions and consequences for the one-dimensional readout program. Inherited braiding, blind-strip and pointer-readout results retain their original attribution.
 
 ## Finite converse and its mechanism
 
@@ -66,6 +79,7 @@ Start with the [scientific overview](science/README.md) and the [precise protoco
 | How do physical transcript bits become a lower bound? | [Hard-cap and expected-cost converses](science/communication-bound.md) |
 | How are root parities compressed and corrections physically executed? | [Exact preparation protocol](science/preparation.md) |
 | What does the frontier imply, and what changes under an ideal bandwidth limit? | [Consequences and scope](science/consequences.md) |
+| What is the depth cost of independent unflagged measurement-report errors? | [Buffered blind cores, physical syndrome compression and protected readout](science/noisy-readout.md) |
 | Which ingredients are established prior work? | [Related work](references/related-work.md) and [bibliography](references/bibliography.bib) |
 | Which finite calculations can be reproduced? | [Verification guide](verification/README.md) |
 
@@ -86,15 +100,16 @@ From the repository root, use Python 3.10 or later:
 ```bash
 python3 tools/verify_geometry.py
 python3 tools/verify_construction.py
+python3 tools/verify_compression.py
 ```
 
-Both programs use only the standard library. The checks cover the explicit Pauli/string geometry, packing inequalities, physical correction boundaries, causal schedules, delivered messages, stabilizer ranks and exact small-state amplitudes. The [saved reports](verification/README.md) describe their scope. Universal converses and arbitrary-size correctness follow from the written arguments; finite enumeration does not establish them.
+These programs use only the standard library. The checks cover the explicit Pauli/string geometry, packing inequalities, physical correction boundaries, causal schedules, delivered messages, stabilizer ranks and exact small-state amplitudes. The compression audit additionally checks the pointer/actual-defect invariant, uniform-even root distributions, copied pointer values, fixed memory/report density, fully counted local schedules and exact physical overlap after decoder errors. The [saved reports](verification/README.md) describe their scope. Universal converses and arbitrary-size correctness follow from the written arguments; finite enumeration does not establish them.
 
 ## Scope
 
 The lower bound grants each charged bit global broadcast, while the construction pays ordinary point-to-point delivered bits. It applies to the full toric ground space and hence also constrains preparation of a specified pure ground state. The construction prepares one fixed pure logical sector exactly.
 
-The target is global physical ground-space overlap. An unapplied remotely described Pauli frame, small energy density, a noisy topological phase and a free global success flag define different tasks. The theorem assumes exact finite-depth causal cones and initially unentangled cells. Its constants are conservative and not optimized. A preparation-time law requires the additional ideal-switch assumptions stated in [the consequences](science/consequences.md#4-a-conditional-preparation-time-law).
+The target is global physical ground-space overlap. An unapplied remotely described Pauli frame, small energy density, a noisy topological phase and a free global success flag define different tasks. Both models assume exact finite-depth causal cones and initially unentangled cells. Constants are conservative and not optimized. The charged-communication preparation-time law requires the additional ideal-switch assumptions stated in [the consequences](science/consequences.md#4-a-conditional-preparation-time-law). The report-noise theorem instead assumes free global classical feedforward and includes the actual correction gates in its operation depth; it is not a laboratory-latency or gate-noise threshold theorem.
 
 ## Purpose and contact
 
