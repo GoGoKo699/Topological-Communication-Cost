@@ -1,12 +1,12 @@
-# Thirty milestones for topological communication cost
+# Thirty milestones for topological preparation resources
 
-This map follows one question: **how much nonlocal classical information is needed to physically prepare a toric-code ground state when local propagation has limited depth?** The single learning anchor is John Preskill's [Quantum Information, Chapter 7: Quantum Error Correction, updated March 2026][preskill]. The [Preskill bridge](PRESKILL_BRIDGE.md#source-map) connects that chapter to the additional circuit, probability, and communication arguments used here.
+Two questions share the same physical output: **how many nonlocal classical bits replace local toric-code preparation depth, and how much depth is needed when measurement reports are noisy?** The single educational anchor is John Preskill's [Quantum Information, Chapter 7: Quantum Error Correction, updated March 2026][preskill]. The [Preskill bridge](PRESKILL_BRIDGE.md#source-map) connects that chapter to the additional circuit, probability, communication, and readout arguments.
 
-The allocation is **14 milestones for background and preliminaries, followed by 16 for the narrative and innovation**. The first fourteen establish the local operator and channel language, the toric code, and the complete global output and resource contract. The remaining sixteen follow the distinct steps of the obstruction and construction through to the matching resource frontier and its timing consequence. Each phase starts with local objects, builds toward global statements, and ends with a synthesis.
+The allocation remains **14 background milestones and 16 narrative milestones**. The background builds from Pauli signs and local records to the toric target and the two distinct information interfaces. The narrative first develops the shared braiding obstruction and the original charged-bit frontier, then combines a buffered local test with physical syndrome compression and protected readout. Its final synthesis explains why both resource laws require actual corrected data states. This is one connected 30-stop map, not two appended courses.
 
-The assumed starting language is finite-dimensional vectors and operators, tensor products, and elementary probability. The chapter is a source for the quantum-error-correction concepts; the bridge supplies the additional tools that the chapter does not establish. In particular, section pointers below do not attribute the project's channel-overlap or communicated-bit theorems to Preskill. The canonical claims and proofs remain in [science](../science/README.md).
+The assumed starting language is finite-dimensional vectors and operators, tensor products, and elementary probability. Preskill supplies the error-correction foundations. The bridge and primary research sources supply the additional preparation-resource proofs; neither theorem is attributed to the textbook. The canonical statements are in [science](../science/README.md).
 
-Each milestone states its immediate earlier dependencies. Those dependencies are conceptual: a source may point ahead to a proof whose definitions or result are being introduced. Throughout, $`N=2L^2`$, $`D`$ is a branchwise local-depth cap, $`C`$ is a hard cap on nonlocal bits, $`\overline C`$ is their expected number, and $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho)`$ is the unconditional weight of the physical data output in the full toric-code ground space.
+Throughout, $`N=2L^2`$ and $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho_{\mathrm{out}})`$ is unconditional physical ground-space weight. In the charged-communication model, $`D`$ is local depth, $`C`$ is the hard nonlocal-bit cap, and $`\overline C`$ is mean message length. In the noisy-report model, $`T`$ includes readouts and physical corrections, $`p`$ is BSC crossover probability, $`\nu`$ bounds report slots per cell and layer, and already public reports have free global classical feedforward. Fixed local memory is counted in quantum qubits, not controller storage.
 
 ## Phase I — Background and preliminaries
 
@@ -188,311 +188,311 @@ Each milestone states its immediate earlier dependencies. Those dependencies are
 
 ### M12
 
-**A causal protocol with charged communication**
+**Two information interfaces for one preparation task**
 
-**Central question.** Which information can change a distant operation or the global execution schedule?
+**Central question.** Which information is paid for, and which information can the controller actually see?
 
-**Understanding target.** Separate private local records, a freely shared initial seed, counted local propagation, and charged nonlocal bits. Require the seed and charged transcript to determine global event choices, support partitions, message routing, and termination. Count outcome-dependent timing, silence, or addressing when they convey information.
+**Understanding target.** Contrast charged nonlocal communication with the noisy-report interface. In the first model local propagation counts and nonlocal control needs a paid transcript. In the second, each fresh true outcome entering classical control crosses an independent unflagged BSC, while already public reports can be processed and broadcast for free. Retained true pointers are local quantum memory operated on through counted gates. Identify why a perfect classical copy of such a pointer, a free extra detector, or finite-speed feedforward would change the theorem.
 
-**Earlier dependencies.** [M02](#m02), [M04](#m04), [M11](#m11).
+**Earlier dependencies.** [M02](#m02), [M03](#m03), [M04](#m04), [M11](#m11).
 
-**Story role.** States the information boundary that makes a communicated-bit theorem meaningful.
+**Story role.** Defines the receiving model before any result is transferred between the sister projects.
 
-**Conceptual connection.** A decoder is a distributed causal procedure; its control signals have locations and cannot be supplied by an uncharged global scheduler.
+**Conceptual connection.** Identical data targets can have different preparation costs because accessible records and communication conventions differ.
 
-**Sources.** Preskill [§7.18.3][p7183] supplies the recovery setting; bridge [locality and causal depth](PRESKILL_BRIDGE.md#locality-and-causal-depth) and [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits) add the resource model; [model, §§3–4](../science/model.md#3-a-causal-adaptive-schedule).
+**Sources.** Preskill [§7.1][p71] and [§7.18.3][p7183]; bridge [two resource models](PRESKILL_BRIDGE.md#two-resource-models-for-the-same-physical-target); [charged model](../science/model.md) and [noisy-readout model](../science/noisy-readout.md).
 
 ### M13
 
-**Branch probabilities and two communication budgets**
+**Weighted branches, report noise, and independent slots**
 
-**Central question.** How should a rare execution branch contribute to the preparation's accuracy and cost?
+**Central question.** Which probabilities survive averaging over private outcomes and noisy reports?
 
-**Understanding target.** Use a positive subnormalized output $`\sigma_t`$ whose trace is the branch probability; its contribution to $`F`$ is $`\mathrm{Tr}(P_{\mathrm{TC}}\sigma_t)`$. Distinguish a cap $`C`$ on every transcript from its mean length $`\overline C`$, and recognize why physically terminating transcript leaves are prefix free.
+**Understanding target.** Use a positive subnormalized branch state whose trace is its physical probability. Distinguish a hard transcript cap from a mean length, and explain prefix-free termination. In the noisy model write a public report as $`y=x\oplus e`$ with independent $`e\sim\mathrm{Ber}(p)`$, including a fresh error for every repeated report. Distinguish report independence from independence of the quantum states or true pointer values. Hidden noise flags used by a proof are inaccessible to the protocol.
 
 **Earlier dependencies.** [M03](#m03), [M11](#m11), [M12](#m12).
 
-**Story role.** Preserves probability weights before any branchwise lower-bound argument is attempted.
+**Story role.** Preserves execution weights and the exact detector interface.
 
-**Conceptual connection.** Quantum branch weights and classical codeword lengths describe the same execution tree from two different perspectives.
+**Conceptual connection.** Conditioning, latent quantum records, and public observations are different operations on one joint probability model.
 
-**Sources.** Preskill [§7.2][p72] provides the channel language; bridge [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits) adds the transcript and coding tools; [model, §4](../science/model.md#4-broadcast-and-delivered-bit-conventions) and [communication bounds, §2](../science/communication-bound.md#2-fixed-transcript-domination).
+**Sources.** Preskill [§7.2][p72]; bridge [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits) and [buffered blindness](PRESKILL_BRIDGE.md#buffered-blindness-with-outside-records); [communication bound](../science/communication-bound.md) and [noisy readout](../science/noisy-readout.md).
 
 ### M14
 
-**Background synthesis: one complete preparation problem**
+**Background synthesis: specify the whole physical contract**
 
-**Central question.** How do the quantum target, spatial causality, and classical information rules fit into one precise task?
+**Central question.** What must a complete statement say before its preparation depth or communication can be optimized?
 
-**Understanding target.** Specify an admissible protocol from a seed-conditioned product input through local channels and charged messages to a physical data output. State exactly what $`L,N,r,D,C,\overline C,F`$ measure, why local ancillas and private records are allowed, and which global controls must appear in the transcript.
+**Understanding target.** Specify the seed-conditioned cell-product input, fixed range, disjoint supports, branchwise depth cap, output data, and unconditional $`F`$. State separately each information interface. In the noisy case include fixed report density and quantum-memory density, ideal quantum gates/storage, and the distinction between QND and destructive pointer readout. Explain why low energy density, a frame label, or logical recoverability after a hypothetical ideal recovery does not establish the requested physical output.
 
 **Earlier dependencies.** [M04](#m04), [M09](#m09), [M10](#m10), [M11](#m11), [M12](#m12), [M13](#m13).
 
-**Story role.** Completes the background phase with the full model that every subsequent claim must obey.
+**Story role.** Completes the local-to-global background phase.
 
-**Conceptual connection.** The toric code supplies the target's algebra, while the causal protocol determines which physical resources can create it.
+**Conceptual connection.** An operational resource theorem is a relation between an explicit input, allowed causal controls, and an output already delivered.
 
-**Sources.** Preskill [§§7.18.1–7.18.3][p7181]; bridge [source map](PRESKILL_BRIDGE.md#source-map) and [what the chapter does and does not supply](PRESKILL_BRIDGE.md#what-the-chapter-does-and-does-not-supply); [model](../science/model.md) and [scientific overview](../science/README.md).
+**Sources.** Preskill [§§7.18.1–7.18.3][p7181]; bridge [source map](PRESKILL_BRIDGE.md#source-map) and [two resource models](PRESKILL_BRIDGE.md#two-resource-models-for-the-same-physical-target); [model](../science/model.md) and [noisy readout](../science/noisy-readout.md).
 
 ## Phase II — Narrative and innovation
 
-The two local mechanisms now develop together: a causal patch imposes an unavoidable overlap loss, while a correction block removes all but one syndrome parity. Their global extensions meet at the same area-per-depth-squared scale.
+The shared local obstruction first gives the charged-bit frontier. A buffered version then couples to report noise, while physical quantum compression makes protected readout attainable at fixed memory density.
 
 ### M15
 
-**Three string identities on one patch**
+**Braiding identities on one patch**
 
-**Central question.** Which local relations encode braiding strongly enough to constrain a prepared state?
+**Central question.** Which local operator relations constrain every toric ground-space state?
 
-**Understanding target.** Construct a star-product cut $`A_0`$ and two deformable open strings $`B_0,B'_0`$ such that, on every code-space vector, $`A_0\chi=\chi`$, $`B_0\chi=B'_0\chi`$, and $`A_0B_0\chi=-B_0\chi`$. Explain the odd crossing around one endpoint and why the identities also hold with correlated auxiliary systems.
+**Understanding target.** Construct a star-product cut $`A_0`$ and deformable open strings $`B_0,B'_0`$. Explain $`A_0\chi=\chi`$, $`B_0\chi=B'_0\chi`$, and $`A_0B_0\chi=-B_0\chi`$ from stabilizer deformation and one crossing. Keep the identities valid when the code state is correlated with other systems. These are contractible local structures, not fixed noncontractible logical labels.
 
 **Earlier dependencies.** [M08](#m08), [M10](#m10), [M14](#m14).
 
-**Story role.** Isolates the local topological obstruction before any circuit or communication estimate is applied.
+**Story role.** Isolates the common topological obstruction.
 
-**Conceptual connection.** String deformation and an anticommuting crossing jointly constrain a state more strongly than either fact alone.
+**Conceptual connection.** Deformation and an anticommuting crossing constrain a state jointly.
 
-**Sources.** Preskill [§7.18.1][p7181] and [§7.18.2][p7182] supply the string setting; bridge [local channels and correlated environments](PRESKILL_BRIDGE.md#local-channels-and-correlated-environments) connects it to the project; [local braiding, §3](../science/local-braiding.md#3-an-explicit-braiding-patch).
+**Sources.** Preskill [§7.18.1][p7181] and [§7.18.2][p7182]; bridge [local channels and correlated environments](PRESKILL_BRIDGE.md#local-channels-and-correlated-environments); [local braiding](../science/local-braiding.md).
 
 ### M16
 
-**A dimension-independent loss of product overlap**
+**A constant loss on a dressed causal patch**
 
-**Central question.** Why do those string identities forbid near-unit probability for a prescribed product reference on the patch?
+**Central question.** Why does the obstruction survive finite depth and arbitrary local Hilbert-space dimension?
 
-**Understanding target.** Follow the vector-norm proof for a partition $`E\sqcup U\sqcup V`$, ending with $`2\sqrt p\le8\sqrt{1-p}`$ and hence $`p\le16/17`$. Identify exactly where the reference vector factors, why the state itself need not factor, and why no local dimension enters the estimate.
+**Understanding target.** Follow the product-reference vector argument on $`E\sqcup U\sqcup V`$: $`2\sqrt a\le8\sqrt{1-a}`$ forces $`a\le16/17`$. Distinguish factorization of the reference from factorization of the tested state. Dressing by a local dilation thickens the strings by radius $`R`$, so a side-$`32(R+1)`$ patch suffices. No ancilla dimension appears in the algebra.
 
-**Earlier dependencies.** [M03](#m03), [M10](#m10), [M15](#m15).
+**Earlier dependencies.** [M03](#m03), [M04](#m04), [M15](#m15).
 
-**Story role.** Converts the qualitative local algebra into a numerical obstruction that can be repeated across space.
+**Story role.** Makes the qualitative obstruction quantitative and usable in both models.
 
-**Conceptual connection.** Approximate agreement with a product reference is incompatible with the two exact ways the braiding operators act on the state.
+**Conceptual connection.** Causality sets the patch size; the operator identities set its nonzero loss.
 
-**Sources.** Preskill [§7.10.1][p7101] and [§§7.3.2–7.3.3][p733] provide the operator and environment background; bridge [what the chapter does and does not supply](PRESKILL_BRIDGE.md#what-the-chapter-does-and-does-not-supply) separates the additional lemma; [local braiding, §1](../science/local-braiding.md#1-dimension-independent-algebra-lemma).
+**Sources.** Preskill [§7.10.1][p7101] and [§§7.3.2–7.3.3][p733]; bridge [local channels and correlated environments](PRESKILL_BRIDGE.md#local-channels-and-correlated-environments); [local braiding, §§3–5](../science/local-braiding.md).
 
 ### M17
 
-**A braiding patch that survives causal spreading**
+**From a local loss to full code-space overlap**
 
-**Central question.** How can the algebraic support partition remain valid after every operator is dressed by a local circuit?
+**Central question.** How can many local obstructions bound a mixed output without assuming independent patches?
 
-**Understanding target.** Set $`R=rD`$ and $`s=R+1`$, and follow the explicit side-$`32s`$ patch. Check that the two thickened open strings meet only inside the endpoint regions, that the thickened closed cut avoids those regions, and that all dressed supports remain inside the patch whenever it fits on the torus.
+**Understanding target.** Dilate the local CPTP circuit, project its output onto the full code space, and pull the normalized projection back. Its squared overlap with the original product vector is $`F`$. Pack $`m=\lfloor L/[32(rD+1)]\rfloor^2`$ patches and project their product references successively. Earlier projections preserve the untouched patch identities, giving $`F\le q_0=(16/17)^m`$. Neither output purity nor environment decoupling is needed.
 
-**Earlier dependencies.** [M04](#m04), [M15](#m15), [M16](#m16).
+**Earlier dependencies.** [M10](#m10), [M11](#m11), [M16](#m16).
 
-**Story role.** Turns a topological drawing into the exact finite geometry required by the algebra lemma.
+**Story role.** Establishes the original no-message theorem.
 
-**Conceptual connection.** A light cone converts circuit depth into the spatial buffer needed to preserve a braiding relation.
+**Conceptual connection.** Conditional inequalities can multiply even when adaptive or projected marginals are correlated.
 
-**Sources.** Preskill [§7.18.1][p7181] supplies the geometric code language; bridge [locality and causal depth](PRESKILL_BRIDGE.md#locality-and-causal-depth) adds operator dressing; [local braiding, §§3–5](../science/local-braiding.md#3-an-explicit-braiding-patch).
+**Sources.** Preskill [§7.2][p72] and [§7.3.3][p733]; bridge [local channels and correlated environments](PRESKILL_BRIDGE.md#local-channels-and-correlated-environments); [channel overlap](../science/channel-overlap.md).
 
 ### M18
 
-**A correction block compresses to one parity**
+**A block physically removes syndrome detail**
 
-**Central question.** How much syndrome information remains after a block is allowed depth proportional to its side length?
+**Central question.** Why does local processing of a rectangle leave only one relevant parity?
 
-**Understanding target.** Partition any $`L\times L`$ torus into $`B=\lfloor L/\ell\rfloor^2`$ balanced blocks whose side lengths lie between $`\ell`$ and $`2\ell-1`$. Trace the local row and column sweeps that physically remove all nonroot defects and leave each root holding exactly its block's parity.
+**Understanding target.** Partition the torus into $`B=\lfloor L/\ell\rfloor^2`$ balanced rectangles of side lengths between $`\ell`$ and $`2\ell-1`$. Follow the row/column comb sweep: moving a defect along a corrected edge clears its child and adds its bit to the parent. All nonroots become defect free and each root retains its block parity. This is a change of the physical data, rather than a compressed description of defects still present.
 
-**Earlier dependencies.** [M02](#m02), [M07](#m07), [M09](#m09), [M14](#m14).
+**Earlier dependencies.** [M07](#m07), [M09](#m09), [M14](#m14).
 
-**Story role.** Provides the constructive counterpart of a causal patch and explains the candidate scale $`N/\ell^2`$ before it is proved necessary.
+**Story role.** Provides the constructive counterpart of causal patch area.
 
-**Conceptual connection.** Local correction eliminates detailed defect positions while conserving one boundary-relevant parity per block.
+**Conceptual connection.** Local correction can reduce the remaining coordination task while sending discarded detail into local environments or records.
 
-**Sources.** Preskill [§7.18.2][p7182] and [§7.18.3][p7183]; bridge [the matching construction](PRESKILL_BRIDGE.md#the-matching-construction) and [worked four-block correction](PRESKILL_BRIDGE.md#worked-four-block-correction); [preparation, §§3–5](../science/preparation.md#3-star-extraction-in-bounded-depth).
+**Sources.** Preskill [§7.18.2][p7182] and [§7.18.3][p7183]; bridge [the matching construction](PRESKILL_BRIDGE.md#the-matching-construction); [preparation, §§3–5](../science/preparation.md).
 
 ### M19
 
-**Projecting the output while retaining every environment**
+**A transcript pays for its total branch weight**
 
-**Central question.** How does a bound on product overlap constrain the actual output of an arbitrary local channel circuit?
+**Central question.** How does the geometric theorem constrain a protocol with nonlocal messages?
 
-**Understanding target.** Purify the cell-product input and retain all local environments in a dilation $`W`$. For $`F>0`$, define $`|\chi\rangle=(P_{\mathrm{TC}}\otimes I)W|\boldsymbol0\rangle/\sqrt F`$ and $`|\Omega\rangle=W^\dagger|\chi\rangle`$. Derive $`|\langle\boldsymbol0|\Omega\rangle|^2=F`$ without factoring the logical state from its environment. Treat the projection as an analysis device rather than an allowed preparation step.
+**Understanding target.** Fix a transcript and preset its remote controls. Complete sender consistency selections locally while preserving all private outcomes, obtaining $`\sigma_t\preceq\widehat\rho_t`$ and branch contribution at most $`q_0`$. Use at most $`2^C`$ leaves to derive $`F\le\min\{1,2^Cq_0\}`$. Then connect physical prefix lengths to $`\overline C\ge H(\mathsf T\mid\mathsf S)\ge\max\{0,F\log_2(F/q_0)\}`$. A normalized rare branch cannot replace its subnormalized contribution.
 
-**Earlier dependencies.** [M03](#m03), [M10](#m10), [M14](#m14), [M17](#m17).
+**Earlier dependencies.** [M13](#m13), [M17](#m17).
 
-**Story role.** Extends the local obstruction to the full class of channels allowed by the model.
+**Story role.** Turns the spatial obstruction into hard and mean communication converses.
 
-**Conceptual connection.** Pulling back a projected output transfers exact code identities into a state whose overlap with the original product input is the desired accuracy.
+**Conceptual connection.** Removing remote dependence and retaining probabilities are both necessary before transcript counting applies.
 
-**Sources.** Preskill [§7.2][p72] and [§7.3.3][p733] provide the dilation and reference-system background; bridge [local channels and correlated environments](PRESKILL_BRIDGE.md#local-channels-and-correlated-environments); [channel overlap, §§2–3](../science/channel-overlap.md#2-local-dilation-and-the-exact-propagation-radius).
+**Sources.** Preskill [§7.2][p72] supplies channel background; bridge [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits); [communication bound, §§2–5](../science/communication-bound.md).
 
 ### M20
 
-**Multiplying patch losses without assuming independence**
+**Closing the charged-communication frontier**
 
-**Central question.** Why can many local overlap obstructions give an exponential global bound even when the patches are correlated?
+**Central question.** What work makes the coarse decoder's answer into the physical toric state?
 
-**Understanding target.** Pack $`m=\lfloor L/[32(rD+1)]\rfloor^2`$ disjoint patches and apply their product-reference projections successively. Show that earlier projections commute with the untouched patch's dressed strings and preserve its identities, giving the conditional bound at every step and therefore $`F\le q=(16/17)^m`$.
+**Understanding target.** Solve the residual even syndrome on a coarse comb tree. Count collected parities and returned subtree coefficients, then propagate each instruction through local layers while applying its physical $`Z`$ edges. Recover $`D\le12\ell+2`$ and $`C\le2(B-1)`$, matching $`(C+1)(D+1)^2=\Omega(N)`$ at fixed positive overlap. Explain why the additional throughput law from $`C\le\beta T`$ needs its own ideal-switch assumptions and is unrelated to detector noise.
 
-**Earlier dependencies.** [M16](#m16), [M17](#m17), [M19](#m19).
+**Earlier dependencies.** [M18](#m18), [M19](#m19).
 
-**Story role.** Produces the global no-message theorem from a local algebraic loss.
+**Story role.** Completes the original constructive/converse story before changing interfaces.
 
-**Conceptual connection.** Preserved conditional constraints can multiply probabilities even when marginal distributions do not factor. The packing number, rather than a count of records or logical qubits, sets the exponent.
+**Conceptual connection.** Local aggregation and delivered correction messages attain the same area-per-depth-squared resource scale.
 
-**Sources.** Preskill [§7.18.1][p7181] supplies the code identities; bridge [local channels and correlated environments](PRESKILL_BRIDGE.md#local-channels-and-correlated-environments) introduces the project extension; [channel overlap, §§4–5](../science/channel-overlap.md#4-packing-and-successive-product-projections).
+**Sources.** Preskill [§7.18.3][p7183]; bridge [worked four-block correction](PRESKILL_BRIDGE.md#worked-four-block-correction); [preparation](../science/preparation.md) and [consequences](../science/consequences.md).
 
 ### M21
 
-**Solving the remaining global parity problem**
+**The local two-loop test**
 
-**Central question.** How can the block-root parities be joined with only order one communicated bits per block?
+**Central question.** What local test can detect the same obstruction when only one region loses its reports?
 
-**Understanding target.** Gather the noncontroller root parities in a fixed schedule, solve the binary correction flow on a nonwrapping coarse comb tree, and return each subtree-parity coefficient to the parent that owns its physical correction path. Explain why total even parity makes the root equation consistent.
+**Understanding target.** Define $`C_0=B_0B'_0`$ and $`K=(I+A_0)(I+C_0)/4`$. Verify that the two closed loop factors commute, every toric ground state passes, and $`P_{\mathrm{TC}}\preceq K`$. Projecting onto $`K`$ supplies exactly the three identities of M15, hence $`\mathrm{Tr}(K\rho)\le16/17`$ for a fixed-schedule depth-$`T`$ local CPTP circuit from a product input. It does not test logical-sector labels.
 
-**Earlier dependencies.** [M08](#m08), [M09](#m09), [M12](#m12), [M18](#m18).
+**Earlier dependencies.** [M15](#m15), [M16](#m16), [M17](#m17).
 
-**Story role.** Shows where genuinely nonlocal information enters the construction and accounts for both incoming and outgoing traffic.
+**Story role.** Makes the inherited obstruction local enough to couple to report blindness.
 
-**Conceptual connection.** The coarse syndrome is a boundary condition for a tree flow; the controller must communicate the solution to the sites that execute it.
+**Conceptual connection.** A weak local acceptance test can still provide a uniform deficit for every admissible local channel.
 
-**Sources.** Preskill [§7.18.2][p7182] and [§7.18.3][p7183] supply the boundary and recovery language; bridge [worked four-block correction](PRESKILL_BRIDGE.md#worked-four-block-correction); [preparation, §6](../science/preparation.md#6-fixed-nonlocal-collection-and-return-traffic).
+**Sources.** Preskill [§7.18.1][p7181]; bridge [the local two-loop test](PRESKILL_BRIDGE.md#the-local-two-loop-test); [noisy-readout converse](../science/noisy-readout.md).
 
 ### M22
 
-**Executing the correction and closing the upper bound**
+**Buffer first, retain outside records, then condition**
 
-**Central question.** What additional work turns the controller's answer into the claimed quantum output?
+**Central question.** Why is averaging unread outcomes insufficient when outside outcomes are selected later?
 
-**Understanding target.** Propagate every correction coefficient along its assigned short physical path, including zero-valued instructions, using disjoint-support layers. Prove that the resulting boundary cancels the syndrome while preserving both logical $`Z`$ labels. Recover $`D\le12\ell+2`$, $`C\le2(B-1)`$, and the all-local endpoint $`C=0`$, $`D\le2L+8`$.
+**Understanding target.** Put the side-$`32(R+1)`$ core inside a side-$`36(R+1)`$ blind block, with distance greater than $`2R`$ from its complement. Freeze a complete public history. Complete each outside instrument to a CPTP map retaining its true-outcome register at creation; retain other outside test outputs too. Their backward cones are disjoint from the core cone, so the fixed-history CPTP state factors before record selection. Only then project outside registers, obtaining $`\mathrm{Tr}(KH\Omega)\le(16/17)\mathrm{Tr}(H\Omega)`$ for every allowed positive outside effect $`H`$.
 
-**Earlier dependencies.** [M11](#m11), [M18](#m18), [M21](#m21).
+**Earlier dependencies.** [M03](#m03), [M04](#m04), [M10](#m10), [M13](#m13), [M21](#m21).
 
-**Story role.** Completes an exact preparation whose output and resource accounting satisfy the same model as the converse.
+**Story role.** Supplies the load-bearing transfer from a blind strip to a blind topological core.
 
-**Conceptual connection.** Solving a decoding equation and physically applying its answer are separate causal tasks; identical corrected branch outputs make record disposal harmless.
+**Conceptual connection.** Trace-decreasing branches cannot be canceled as trace preserving; retaining their records makes the later conditioning legitimate.
 
-**Sources.** Preskill [§7.18.3][p7183]; bridge [the matching construction](PRESKILL_BRIDGE.md#the-matching-construction) and [worked four-block correction](PRESKILL_BRIDGE.md#worked-four-block-correction); [preparation, §§7–8](../science/preparation.md#7-local-execution-of-the-coarse-correction).
+**Sources.** Preskill [§§7.3.2–7.3.3][p733] provide environment background; bridge [buffered blindness](PRESKILL_BRIDGE.md#buffered-blindness-with-outside-records); [noisy readout](../science/noisy-readout.md), using the retained-record discipline of [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits).
 
 ### M23
 
-**A fixed transcript has a local completion**
+**Many blind cores under unflagged BSC noise**
 
-**Central question.** How can the no-message theorem constrain a branch that used nonlocal communication?
+**Central question.** How do rare local blindness events constrain the unconditional physical output?
 
-**Understanding target.** Fix the public seed and communicated transcript, preprogram its remote controls, and retain all uncommunicated private outcomes. Complete each local consistency selection to obtain a local trace-preserving output $`\widehat\rho_t`$ with $`\sigma_t\preceq\widehat\rho_t`$ and the same depth cap. Understand the CP-order composition argument and why classical-read completions add no spatial layers.
+**Understanding target.** Represent a BSC as truthful reporting with probability $`1-2p`$ and a fair independent report with probability $`2p`$, keeping the mixture flags hidden. Pack $`M=\lfloor L/[36(rT+1)]\rfloor^2`$ blocks and pad each to $`k=1296\nu(rT+1)^2T`$ potential slots. Each block is blind with probability $`(2p)^k`$. Apply M22 successively with the other core tests retained, then average the independent hidden flags to obtain $`F\le[1-(2p)^k/17]^M`$. Final quantum core states need not be independent.
 
-**Earlier dependencies.** [M03](#m03), [M12](#m12), [M13](#m13), [M20](#m20).
+**Earlier dependencies.** [M13](#m13), [M21](#m21), [M22](#m22).
 
-**Story role.** Transfers the geometric overlap obstruction to each communicated branch without discarding its probability.
+**Story role.** Turns buffered conditioning into a finite unconditional overlap bound.
 
-**Conceptual connection.** Presetting a transcript removes remote control, while positive-map domination preserves the weight of the histories consistent with that transcript.
+**Conceptual connection.** Independence is used for detector flags; multiplicativity of quantum tests comes from the conditional trace inequality.
 
-**Sources.** Preskill [§7.2][p72] supplies the channel background; bridge [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits) adds completion and branch accounting; [communication bounds, §2](../science/communication-bound.md#2-fixed-transcript-domination).
+**Sources.** Preskill [§7.5.2][p752] supplies independent-noise context; bridge [from blind cores to a depth bound](PRESKILL_BRIDGE.md#from-blind-cores-to-a-depth-bound); [noisy readout](../science/noisy-readout.md).
 
 ### M24
 
-**A hard communication cap limits total ground-space weight**
+**What the lower bound proves**
 
-**Central question.** How many bounded-overlap branches can a $`C`$-bit protocol combine?
+**Central question.** Why does a space-time blind block lead to a cube root of a logarithm?
 
-**Understanding target.** For each public seed, use at most $`2^C`$ prefix-free terminal transcripts and the contribution bound $`\mathrm{Tr}(P_{\mathrm{TC}}\sigma_t)\le q`$ to derive $`F\le\min\{1,2^Cq\}`$ after averaging over the seed. Obtain the uniform fixed-overlap inequality $`(C+1)(D+1)^2\ge c_{f,r}N`$ from the finite packing estimate, including the small-lattice and deep-circuit endpoints.
+**Understanding target.** For fixed $`p,r,\nu`$ and $`F\ge f>0`$, use $`F\le\exp[-M(2p)^k/17]`$ to compare the logarithm of the number of available cores with their $`O(T^3)`$ report volume. Derive $`T=\Omega((\log L)^{1/3})`$, treating the no-fitting-core and linear-depth regimes separately. Keep the dependence of the constants on the fixed detector and target explicit; this finite estimate does not prove a full uniform detector/accuracy crossover.
 
-**Earlier dependencies.** [M13](#m13), [M20](#m20), [M23](#m23).
+**Earlier dependencies.** [M23](#m23).
 
-**Story role.** Establishes the worst-case communicated-bit converse and its robust accuracy dependence.
+**Story role.** Extracts the necessary depth with its actual quantifiers.
 
-**Conceptual connection.** A geometric bound on one branch becomes an information-resource bound through the number of distinguishable terminal histories.
+**Conceptual connection.** The logarithm comes from many spatial opportunities for a finite probability of locally losing the required information.
 
-**Sources.** Preskill [§7.18.1][p7181] supplies the code-space context; bridge [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits) supplies the additional counting argument; [communication bounds, §3](../science/communication-bound.md#3-worst-case-communication).
+**Sources.** Preskill [§7.5][p751] supplies probability/fidelity background; bridge [from blind cores to a depth bound](PRESKILL_BRIDGE.md#from-blind-cores-to-a-depth-bound); [noisy readout](../science/noisy-readout.md).
 
 ### M25
 
-**Expected communication requires an entropy argument**
+**Coherent extraction with three qubits per cell**
 
-**Central question.** Can rare long transcripts evade the cost required at fixed unconditional accuracy?
+**Central question.** How can a true syndrome control local operations without becoming free classical advice?
 
-**Understanding target.** Derive $`\overline C\ge H(\mathsf T\mid\mathsf S)\ge\max\{0,F\log_2(F/q)\}`$ from branch contributions and physical prefix coding. Keep the imagined ground-space test as a mathematical random variable, retain the branchwise depth cap, and handle almost sure termination after conditioning on almost every seed.
+**Understanding target.** Starting from all-zero data, extract each star into one ancilla pointer with counted local gates and dephase it without reporting an outcome. Obtain the cq mixture over uniform even syndromes $`s`$, with data branch $`|\psi_s\rangle`$ and pointer string $`|s\rangle`$. Use $`Z(E)|\psi_s\rangle=|\psi_{s\oplus\partial E}\rangle`$. Count two designated edge qubits and one reusable pointer per cell; no true syndrome is handed noiselessly to the controller.
 
-**Earlier dependencies.** [M13](#m13), [M23](#m23), [M24](#m24).
+**Earlier dependencies.** [M02](#m02), [M03](#m03), [M07](#m07), [M09](#m09), [M12](#m12).
 
-**Story role.** Gives the separate mean-cost converse needed for variable-length protocols.
+**Story role.** Begins the fixed-memory upper bound in the exact noisy-report interface.
 
-**Conceptual connection.** Successful ground-space weight must be spread over enough transcripts to force entropy, and a physical prefix code must pay at least that entropy in mean length.
+**Conceptual connection.** An orthogonal quantum pointer can drive a nearby counted gate without opening a noiseless public measurement channel.
 
-**Sources.** Preskill [§7.2][p72] supplies the outcome-probability setting; bridge [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits) adds the classical coding and entropy proof; [communication bounds, §4](../science/communication-bound.md#4-expected-communication-and-prefix-coding).
+**Sources.** Preskill [§7.1][p71], [§7.10.1][p7101], and [§7.18.3][p7183]; bridge [physical compression before readout](PRESKILL_BRIDGE.md#physical-compression-before-readout); [noisy readout](../science/noisy-readout.md).
 
 ### M26
 
-**Acceptance, unconditional weight, and a usable success flag**
+**A compression invariant for data and pointers**
 
-**Central question.** What changes if a protocol is assessed only on selected successful executions?
+**Central question.** What must remain true after every child-to-parent syndrome sweep?
 
-**Understanding target.** Select existing positive classical branch contributions and retain their unconditional contribution $`p f_{\mathrm{acc}}`$. Explain why the same hard-cap converse bounds that quantity, why it does not authorize an added global quantum filter, and why making a distributed acceptance condition available at one site can itself require resources.
+**Understanding target.** For adjacent child and parent pointers with bits $`(a,b)`$, apply pointer CNOT, child-controlled $`Z`$ on their shared data edge, then reset the child pointer. Track the child's data defect to zero and both parent data/pointer bits to $`a\oplus b`$. Reset transfers discarded detail to an inaccessible environment. Iteration leaves only root defects, a uniform even root vector, and zero nonroot pointers. Explain why XORing noisy raw reports would violate this invariant.
 
-**Earlier dependencies.** [M11](#m11), [M13](#m13), [M23](#m23), [M24](#m24).
+**Earlier dependencies.** [M18](#m18), [M25](#m25).
 
-**Story role.** Specifies the probability and output conditions under which the communication theorem remains operationally meaningful.
+**Story role.** Certifies compression of the actual remaining physical correction problem.
 
-**Conceptual connection.** A conditional state, its probability of occurrence, and a physically available herald are three distinct objects.
+**Conceptual connection.** Discarded syndrome entropy is harmless only after the local physical defects it described have been removed.
 
-**Sources.** Preskill [§7.2][p72] and [§7.18.3][p7183] provide the channel and recovery context; bridge [syndromes and physical output](PRESKILL_BRIDGE.md#syndromes-and-physical-output) and [from overlap to communicated bits](PRESKILL_BRIDGE.md#from-overlap-to-communicated-bits); [communication bounds, §5](../science/communication-bound.md#5-selected-success-events).
+**Sources.** Preskill [§7.2][p72] and [§7.18.3][p7183]; bridge [physical compression before readout](PRESKILL_BRIDGE.md#physical-compression-before-readout); [noisy-readout construction](../science/noisy-readout.md).
 
 ### M27
 
-**Matching the depth–communication frontier**
+**Area times time protects one pointer**
 
-**Central question.** In what precise sense do the converse and construction determine the optimal resource scaling?
+**Central question.** How does one surviving root bit acquire a cubic number of reports at linear depth?
 
-**Understanding target.** Compare the fixed-$`f,r`$ lower bounds for $`C`$ and $`\overline C`$ with the exact block preparation. Explain the extensive bit cost at constant depth, the $`N/(D+1)^2`$ scale in the intermediate regime, and the zero-communication endpoint at depth of order $`L`$. Interpret matching as equality of scaling up to constants and resource rescaling.
+**Understanding target.** Reuse the freed pointers to fan out each orthogonal root value over its block in $`O(b)`$ local layers. Repeat QND readout $`t`$ times on each of $`A_j\ge b^2`$ copies, with one report per cell per round. Derive $`m_j=A_jt`$ and majority error $`e_{m_j}(p)\le e^{-\mathcal D(p)m_j}`$, where $`\mathcal D(p)=-\tfrac12\log[4p(1-p)]`$. The pointer values are correlated copies; their detector errors are independent. Fanout, readout time, and local density all count.
 
-**Earlier dependencies.** [M20](#m20), [M22](#m22), [M24](#m24), [M25](#m25), [M26](#m26).
+**Earlier dependencies.** [M13](#m13), [M25](#m25), [M26](#m26).
 
-**Story role.** Brings the obstruction and the constructive protocol together in the main global result.
+**Story role.** Connects reliable report extraction to the available two-dimensional block volume.
 
-**Conceptual connection.** Local causal area sets both how much syndrome detail can be eliminated before communication and how many unavoidable obstructions remain.
+**Conceptual connection.** Classical basis information can be copied locally without cloning an arbitrary unknown state; spatial redundancy multiplies temporal observations.
 
-**Sources.** Preskill [§7.18.1][p7181] and [§7.18.3][p7183] supply the common code and recovery setting; bridge [the matching construction](PRESKILL_BRIDGE.md#the-matching-construction) and [what the chapter does and does not supply](PRESKILL_BRIDGE.md#what-the-chapter-does-and-does-not-supply); [consequences, §§1–3](../science/consequences.md#1-an-optimal-exchange-of-resources).
+**Sources.** Preskill [§7.6][p76] and [§7.18.3][p7183] supply coding/recovery background; bridge [protected pointer readout](PRESKILL_BRIDGE.md#protected-pointer-readout-and-the-delivered-state); [noisy readout](../science/noisy-readout.md), retaining the pointer-amplification attribution of [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits).
 
 ### M28
 
-**Identifying the contribution and its reach**
+**The corrected ensemble has an exact ground-space weight**
 
-**Central question.** What does a quantitative communicated-bit frontier add to known code geometry and measurement-assisted preparation?
+**Central question.** Which decoding errors still leave physical anyons after the final gates?
 
-**Understanding target.** Separate the inherited braiding obstruction and standard syndrome-correction ingredients from their conversion into a charged-information theorem for arbitrary allowed local channels. Explain why a bound valid for every decoder is stronger than counting the messages in one stabilizer algorithm, and distinguish preparation-resource bounds from bounds on code parameters.
+**Understanding target.** Decode $`B-1`$ roots and infer the last from even parity. Compute a correction edge set and physically apply its $`Z`$ gates in a counted layer using the permitted free public feedforward. A wrong decoded root leaves a nonzero residual syndrome even if several errors have even parity. Derive $`F_{\mathrm{phys}}=\prod_{j=1}^{B-1}[1-e_{A_jt}(p)]`$ by averaging every true syndrome, report error, and tie coin. Relate this exact ensemble formula to the four-block pointer example.
 
-**Earlier dependencies.** [M15](#m15), [M20](#m20), [M23](#m23), [M27](#m27).
+**Earlier dependencies.** [M07](#m07), [M11](#m11), [M20](#m20), [M27](#m27).
 
-**Story role.** Locates the innovation and states the generality that gives the resource law its significance.
+**Story role.** Closes the output requirement instead of stopping at an inferred frame.
 
-**Conceptual connection.** The same spatial structure can constrain encoded information, local preparation, or communication, but those are different tasks with different resource variables.
+**Conceptual connection.** Reliable reports matter because their decoded values select the actual corrected quantum state.
 
-**Sources.** Preskill [§7.19][p719] and [§7.20][p720] give the comparison with geometric code constraints; bridge [what the chapter does and does not supply](PRESKILL_BRIDGE.md#what-the-chapter-does-and-does-not-supply); [communication bounds, §6](../science/communication-bound.md#6-relation-to-the-construction-and-prior-work) and the [research-source comparison](../references/related-work.md).
+**Sources.** Preskill [§7.5.1][p751] and [§7.18.3][p7183]; bridge [protected pointer readout](PRESKILL_BRIDGE.md#protected-pointer-readout-and-the-delivered-state) and [small protected-readout example](PRESKILL_BRIDGE.md#small-protected-readout-example); [noisy readout](../science/noisy-readout.md).
 
 ### M29
 
-**Converting the resource law into preparation time**
+**Attaining and matching cube-root logarithmic depth**
 
-**Central question.** What time law follows when the classical network has a fixed aggregate delivered throughput?
+**Central question.** How do the fully counted upper and lower bounds meet?
 
-**Understanding target.** Under the stated ideal-switch assumptions, use $`D\le T`$ and $`C\le\beta T`$ and optimize the constructive time $`\ell+N/(\beta\ell^2)`$. Interpret the resulting scale $`\max\{1,\min\{L,(N/\beta)^{1/3}\}\}`$, including the all-local $`\beta=0`$ limit. Identify exactly which additional architecture assumptions make this conversion valid.
+**Understanding target.** Combine $`T\le16b+t-4`$ and $`1-F\le(B-1)e^{-\mathcal D(p)b^2t}`$. Set $`t=b`$ and choose $`b=O((\log L)^{1/3})`$ for fixed detector quality and fixed infidelity; use the exact one-block sweep when needed. Together with M24 obtain $`T_{\mathrm{det}}=\Theta_{p,f}((\log L)^{1/3})`$. Distinguish this fixed-parameter theorem from the separate finite constructive upper bound and from a claimed matched crossover. QND readout uses three qubits per cell; a destructive interface needs an additional reusable readout qubit.
 
-**Earlier dependencies.** [M12](#m12), [M22](#m22), [M27](#m27).
+**Earlier dependencies.** [M24](#m24), [M26](#m26), [M27](#m27), [M28](#m28).
 
-**Story role.** Gives an end-to-end operational consequence of the matched resource frontier.
+**Story role.** Completes the new matched depth theorem.
 
-**Conceptual connection.** Local aggregation time and remote traffic compete, so their balance selects a block size and a preparation-time exponent.
+**Conceptual connection.** The construction and converse meet through the same two-dimensional space-time volume, after both data correction and information access are accounted for.
 
-**Sources.** Preskill [§7.18.3][p7183] supplies the recovery task, while the timing model is an added project assumption; bridge [what the chapter does and does not supply](PRESKILL_BRIDGE.md#what-the-chapter-does-and-does-not-supply); [consequences, §4](../science/consequences.md#4-a-conditional-preparation-time-law).
+**Sources.** Preskill [§7.18.3][p7183]; bridge [the fixed-detector preparation law](PRESKILL_BRIDGE.md#the-fixed-detector-preparation-law); [noisy readout](../science/noisy-readout.md).
 
 ### M30
 
-**Narrative synthesis: from one crossing to a global resource law**
+**Narrative synthesis: two costs of physical preparation**
 
-**Central question.** How do local braiding, branch probabilities, and executed corrections jointly determine the cost of preparation?
+**Central question.** What changes, and what remains shared, between the two preparation laws?
 
-**Understanding target.** Reconstruct the complete chain: local string algebra, buffered causal patches, full-code-space channel overlap, fixed-transcript domination, hard and mean communication bounds, and exact physical correction. Explain how the two directions meet, what the conditional timing consequence adds, and which changes to initial resources, causality, accuracy, or output would require a different theorem.
+**Understanding target.** Reconstruct the charged-bit frontier and the noisy-report depth law from their common local braiding and physical syndrome removal. Assign the retained-record/statistical and pointer-readout ingredients to Readout Entanglement Limits, and preserve Li–Lee–Yoshida attribution for the geometric obstruction. Explain why free public feedforward, noisy quantum gates/storage, unbounded report bandwidth, postselection, finite-speed communication, or replacing physical overlap by logical recoverability require different conclusions. Keep the original aggregate-throughput cube root distinct from the new cube root of a logarithm.
 
-**Earlier dependencies.** [M26](#m26), [M27](#m27), [M28](#m28), [M29](#m29).
+**Earlier dependencies.** [M20](#m20), [M22](#m22), [M23](#m23), [M28](#m28), [M29](#m29).
 
-**Story role.** Completes the narrative phase with one coherent account of the theorem, its mechanism, and its scope.
+**Story role.** Completes the narrative phase with the contribution, ownership, and limits.
 
-**Conceptual connection.** The local algebra fixes a global preparation cost only after spatial causality, probability, and the physical output are kept in the same accounting.
+**Conceptual connection.** A common topological obstruction yields different optimal costs only after the classical interface and the delivered physical state have both been specified.
 
-**Sources.** Preskill [§§7.18–7.20][p718]; bridge [what the chapter does and does not supply](PRESKILL_BRIDGE.md#what-the-chapter-does-and-does-not-supply); [scientific overview](../science/README.md), [communication bounds](../science/communication-bound.md), [preparation](../science/preparation.md), and [consequences](../science/consequences.md).
+**Sources.** Preskill [§§7.18–7.20][p718]; bridge [what the chapter does and does not supply](PRESKILL_BRIDGE.md#what-the-chapter-does-and-does-not-supply); [communication bound](../science/communication-bound.md), [noisy readout](../science/noisy-readout.md), and [research attribution](../references/related-work.md).
 
 ## Anchor source
 
@@ -513,3 +513,6 @@ All Preskill links below refer to the same March 2026 author draft. A PDF page n
 [p719]: https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=66
 [p720]: https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=69
 
+
+[p76]: https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=24
+[p752]: https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=23

@@ -61,6 +61,74 @@ This digest covers the tested lattice/block parameters, syndromes, actual physic
 
 These checks do not verify all lattice sizes, derive the communication converse, optimize the finite constants, or establish a physical-noise threshold. They do not simulate a controller with finite processor speed, network transit latency or faulty hardware. The small-state check is an exact stabilizer-amplitude calculation, not a general-purpose full-circuit simulator. The arbitrary-size upper bound rests on the local-sweep, tree-flow and boundary argument in the scientific account.
 
+## Noisy-report compression checks
+
+[The noisy-readout account](../science/noisy-readout.md) studies a different resource convention from the charged-communication construction above: global classical processing and communication are free, but every measurement outcome supplied to that controller passes through an independent unflagged binary symmetric channel. The controller must deliver a physically corrected toric-code state. This extension combines the inherited local toric-code correction with the protected quantum-pointer readout of [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits/blob/10ec6b4ebfdd3f6dc20e83a7e73d8b36126e9c0b/science/construction.md).
+
+Run the additional finite audit from this repository root:
+
+```bash
+python3 tools/verify_compression.py
+```
+
+To save a fresh complete report, use a new path:
+
+```bash
+python3 tools/verify_compression.py --output verification/local-compression-check.json
+```
+
+The program uses only the Python standard library, imports [the existing construction helper](../tools/verify_construction.py), and refuses to overwrite an existing report. Explicit checks remain active under `python -O`. Its report records both source hashes and the inherited construction revision; that historical revision identifies the antecedent and is not a claim that the new verifier existed there.
+
+### Physical invariant and resource convention
+
+The protocol uses two owned data qubits and one quantum pointer ancilla per cell, so $`q=3`$. A fixed neighboring-cell sweep step applies a pointer CNOT, a pointer-controlled physical $`Z`$, and an unconditional child-pointer reset. Its surviving pointer equals the **actual remaining star defect**. No raw true outcome is supplied to the classical controller. Freed ancillas copy the block-root pointer across the block through counted local CNOT gates; repeated QND readout then produces independent noisy reports of that same bit.
+
+For blocks with side lengths in $`[b,2b-1]`$, area $`A_j`$, and $`t`$ readout layers, the elementary schedule has
+
+```math
+T\le16b+t-4,\qquad q=3,\qquad r=1,\qquad \nu=1,
+\qquad m_j=A_jt\ge b^2t.
+```
+
+There are $`B=\lfloor L/b\rfloor^2`$ blocks. The controller decodes $`B-1`$ roots and infers the last from even syndrome parity. After the actual physical correction, the unconditional ground-space overlap is exactly
+
+```math
+F_{\rm phys}=\prod_{j=1}^{B-1}[1-e_{A_jt}(p)],
+\qquad
+1-F_{\rm phys}\le(B-1)e^{-D(p)b^2t},
+```
+
+where $`e_m(p)`$ is the fair-tie majority error and $`D(p)=-\tfrac12\log[4p(1-p)]`$. The empty product for $`B=1`$ is one; no readout is then required. The audit checks physical residual syndromes rather than accepting a proposed Pauli frame or a reweighted estimator as the output.
+
+### What is checked
+
+| Check | Evidence and purpose |
+|---|---|
+| Coherent star extraction | Sparse exact integer amplitudes simulate the actual ancilla Hadamards and scheduled extraction CNOTs at $`L=2,3`$. Every joint syndrome/data amplitude is compared with its canonical projected-state value. Forbidden odd-syndrome amplitudes cancel exactly, and normalization is checked. |
+| Quantum-pointer compression | Every local CNOT, controlled physical $`Z`$ and pointer reset is evaluated on the resulting classical pointer branches. Pointer/data syndrome consistency is checked after every step, along with the independently computed physical edge boundary. For small instances the actual controlled-$`Z`$ phases are compared on every canonical-state basis amplitude. |
+| Discarded records and root distribution | Exhaustion of all small even syndromes verifies that each even root vector has exactly $`2^{L^2-B}`$ preimages. The retained roots remain correlated with their actual data defects after nonroot records are discarded. |
+| Pointer fanout and fixed density | The row/column CNOT schedule has disjoint cell supports and unit range, uses exactly $`L^2-B`$ CNOTs, and fills every block with its root bit. No extra pointer memory or simultaneous report density is introduced. |
+| Corrected output under decoding errors | All independent-root error patterns are exhausted in small layouts and sampled in larger ones. The actual coarse physical edge correction is assembled, and an independent boundary calculation verifies that ground-space membership occurs precisely when every decoded independent root is correct. |
+| Detector and depth estimates | Fair-tie majority probabilities, independent-root physical overlaps and Chernoff bounds are checked at several detector probabilities and repetition counts. The actual elementary layer count is compared with $`16b+t-4`$, using $`t=b`$ in the layout audit. |
+
+[compression-results.json](compression-results.json) records a passing run with:
+
+| Quantity | Count |
+|---|---:|
+| Layout configurations | 37 |
+| Syndrome instances | 1,456 |
+| Exact coherent-extraction amplitude comparisons | 65,600 |
+| Exact compressed-state amplitude comparisons | 196,736 |
+| Physical root-decoding error-pattern checks | 72,168 |
+| Complete uniform-even root-distribution checks | 5 |
+| Detector-probability checks | 36 |
+
+All even syndromes and all block parameters are exhausted at $`L=2,3`$. Larger tested sizes are $`L=4,5,7,11,16,31`$, with a zero syndrome and twenty samples from seed `20261108` per layout. Those larger layouts sample decoding-error patterns rather than enumerating every pattern.
+
+### Limits
+
+These checks support the finite upper construction. They do not prove the buffered blind-core lemma, its application to adaptive protocols, or the universal depth lower bound; those require the analytical argument in [the noisy-readout account](../science/noisy-readout.md). The exact circuit test covers coherent star extraction, while later steps use exact pointer branches and stabilizer amplitudes; it is not a full density-matrix simulation of every layout. The stated memory/depth constants use ideal coherent gates, storage, reset and repeatable QND readout. Destructive readout needs a retained pointer and a separate resettable readout register, changing the fixed memory and depth constants. Signal latency, bounded classical processing time and noisy quantum gates are outside this report.
+
 ## Geometry checks
 
 [verify_geometry.py](../tools/verify_geometry.py) and [geometry-results.json](geometry-results.json) concern the separate finite braiding geometry used in the converse. Run:

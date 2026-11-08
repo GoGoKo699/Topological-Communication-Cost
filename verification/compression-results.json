@@ -1,0 +1,672 @@
+{
+  "configurations": [
+    {
+      "L": 2,
+      "b": 1,
+      "blocks": 4,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 11,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 12,
+      "side_lengths": [
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 2,
+      "b": 2,
+      "blocks": 1,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 20,
+      "fanout_CNOTs": 3,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 12,
+      "side_lengths": [
+        2
+      ],
+      "sweep_edge_channels": 3
+    },
+    {
+      "L": 3,
+      "b": 1,
+      "blocks": 9,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 13,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 27,
+      "side_lengths": [
+        1,
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 3,
+      "b": 2,
+      "blocks": 1,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 30,
+      "fanout_CNOTs": 8,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 27,
+      "side_lengths": [
+        3
+      ],
+      "sweep_edge_channels": 8
+    },
+    {
+      "L": 3,
+      "b": 3,
+      "blocks": 1,
+      "depth_bound": 47,
+      "elementary_depth_t_equals_b": 31,
+      "fanout_CNOTs": 8,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 27,
+      "side_lengths": [
+        3
+      ],
+      "sweep_edge_channels": 8
+    },
+    {
+      "L": 4,
+      "b": 1,
+      "blocks": 16,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 11,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 48,
+      "side_lengths": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 4,
+      "b": 2,
+      "blocks": 4,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 20,
+      "fanout_CNOTs": 12,
+      "minimum_reports_per_decoded_root": 8,
+      "qubits": 48,
+      "side_lengths": [
+        2,
+        2
+      ],
+      "sweep_edge_channels": 12
+    },
+    {
+      "L": 4,
+      "b": 3,
+      "blocks": 1,
+      "depth_bound": 47,
+      "elementary_depth_t_equals_b": 37,
+      "fanout_CNOTs": 15,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 48,
+      "side_lengths": [
+        4
+      ],
+      "sweep_edge_channels": 15
+    },
+    {
+      "L": 4,
+      "b": 4,
+      "blocks": 1,
+      "depth_bound": 64,
+      "elementary_depth_t_equals_b": 38,
+      "fanout_CNOTs": 15,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 48,
+      "side_lengths": [
+        4
+      ],
+      "sweep_edge_channels": 15
+    },
+    {
+      "L": 5,
+      "b": 1,
+      "blocks": 25,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 13,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 75,
+      "side_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 5,
+      "b": 2,
+      "blocks": 4,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 30,
+      "fanout_CNOTs": 21,
+      "minimum_reports_per_decoded_root": 8,
+      "qubits": 75,
+      "side_lengths": [
+        3,
+        2
+      ],
+      "sweep_edge_channels": 21
+    },
+    {
+      "L": 5,
+      "b": 3,
+      "blocks": 1,
+      "depth_bound": 47,
+      "elementary_depth_t_equals_b": 47,
+      "fanout_CNOTs": 24,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 75,
+      "side_lengths": [
+        5
+      ],
+      "sweep_edge_channels": 24
+    },
+    {
+      "L": 5,
+      "b": 4,
+      "blocks": 1,
+      "depth_bound": 64,
+      "elementary_depth_t_equals_b": 48,
+      "fanout_CNOTs": 24,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 75,
+      "side_lengths": [
+        5
+      ],
+      "sweep_edge_channels": 24
+    },
+    {
+      "L": 5,
+      "b": 5,
+      "blocks": 1,
+      "depth_bound": 81,
+      "elementary_depth_t_equals_b": 49,
+      "fanout_CNOTs": 24,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 75,
+      "side_lengths": [
+        5
+      ],
+      "sweep_edge_channels": 24
+    },
+    {
+      "L": 7,
+      "b": 1,
+      "blocks": 49,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 13,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 147,
+      "side_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 7,
+      "b": 2,
+      "blocks": 9,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 30,
+      "fanout_CNOTs": 40,
+      "minimum_reports_per_decoded_root": 8,
+      "qubits": 147,
+      "side_lengths": [
+        3,
+        2,
+        2
+      ],
+      "sweep_edge_channels": 40
+    },
+    {
+      "L": 7,
+      "b": 3,
+      "blocks": 4,
+      "depth_bound": 47,
+      "elementary_depth_t_equals_b": 39,
+      "fanout_CNOTs": 45,
+      "minimum_reports_per_decoded_root": 27,
+      "qubits": 147,
+      "side_lengths": [
+        4,
+        3
+      ],
+      "sweep_edge_channels": 45
+    },
+    {
+      "L": 7,
+      "b": 6,
+      "blocks": 1,
+      "depth_bound": 98,
+      "elementary_depth_t_equals_b": 66,
+      "fanout_CNOTs": 48,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 147,
+      "side_lengths": [
+        7
+      ],
+      "sweep_edge_channels": 48
+    },
+    {
+      "L": 7,
+      "b": 7,
+      "blocks": 1,
+      "depth_bound": 115,
+      "elementary_depth_t_equals_b": 67,
+      "fanout_CNOTs": 48,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 147,
+      "side_lengths": [
+        7
+      ],
+      "sweep_edge_channels": 48
+    },
+    {
+      "L": 11,
+      "b": 1,
+      "blocks": 121,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 13,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 363,
+      "side_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 11,
+      "b": 2,
+      "blocks": 25,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 30,
+      "fanout_CNOTs": 96,
+      "minimum_reports_per_decoded_root": 8,
+      "qubits": 363,
+      "side_lengths": [
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sweep_edge_channels": 96
+    },
+    {
+      "L": 11,
+      "b": 3,
+      "blocks": 9,
+      "depth_bound": 47,
+      "elementary_depth_t_equals_b": 39,
+      "fanout_CNOTs": 112,
+      "minimum_reports_per_decoded_root": 27,
+      "qubits": 363,
+      "side_lengths": [
+        4,
+        4,
+        3
+      ],
+      "sweep_edge_channels": 112
+    },
+    {
+      "L": 11,
+      "b": 5,
+      "blocks": 4,
+      "depth_bound": 81,
+      "elementary_depth_t_equals_b": 57,
+      "fanout_CNOTs": 117,
+      "minimum_reports_per_decoded_root": 125,
+      "qubits": 363,
+      "side_lengths": [
+        6,
+        5
+      ],
+      "sweep_edge_channels": 117
+    },
+    {
+      "L": 11,
+      "b": 10,
+      "blocks": 1,
+      "depth_bound": 166,
+      "elementary_depth_t_equals_b": 102,
+      "fanout_CNOTs": 120,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 363,
+      "side_lengths": [
+        11
+      ],
+      "sweep_edge_channels": 120
+    },
+    {
+      "L": 11,
+      "b": 11,
+      "blocks": 1,
+      "depth_bound": 183,
+      "elementary_depth_t_equals_b": 103,
+      "fanout_CNOTs": 120,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 363,
+      "side_lengths": [
+        11
+      ],
+      "sweep_edge_channels": 120
+    },
+    {
+      "L": 16,
+      "b": 1,
+      "blocks": 256,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 11,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 768,
+      "side_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 16,
+      "b": 2,
+      "blocks": 64,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 20,
+      "fanout_CNOTs": 192,
+      "minimum_reports_per_decoded_root": 8,
+      "qubits": 768,
+      "side_lengths": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sweep_edge_channels": 192
+    },
+    {
+      "L": 16,
+      "b": 3,
+      "blocks": 25,
+      "depth_bound": 47,
+      "elementary_depth_t_equals_b": 37,
+      "fanout_CNOTs": 231,
+      "minimum_reports_per_decoded_root": 27,
+      "qubits": 768,
+      "side_lengths": [
+        4,
+        3,
+        3,
+        3,
+        3
+      ],
+      "sweep_edge_channels": 231
+    },
+    {
+      "L": 16,
+      "b": 8,
+      "blocks": 4,
+      "depth_bound": 132,
+      "elementary_depth_t_equals_b": 74,
+      "fanout_CNOTs": 252,
+      "minimum_reports_per_decoded_root": 512,
+      "qubits": 768,
+      "side_lengths": [
+        8,
+        8
+      ],
+      "sweep_edge_channels": 252
+    },
+    {
+      "L": 16,
+      "b": 15,
+      "blocks": 1,
+      "depth_bound": 251,
+      "elementary_depth_t_equals_b": 145,
+      "fanout_CNOTs": 255,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 768,
+      "side_lengths": [
+        16
+      ],
+      "sweep_edge_channels": 255
+    },
+    {
+      "L": 16,
+      "b": 16,
+      "blocks": 1,
+      "depth_bound": 268,
+      "elementary_depth_t_equals_b": 146,
+      "fanout_CNOTs": 255,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 768,
+      "side_lengths": [
+        16
+      ],
+      "sweep_edge_channels": 255
+    },
+    {
+      "L": 31,
+      "b": 1,
+      "blocks": 961,
+      "depth_bound": 13,
+      "elementary_depth_t_equals_b": 13,
+      "fanout_CNOTs": 0,
+      "minimum_reports_per_decoded_root": 1,
+      "qubits": 2883,
+      "side_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sweep_edge_channels": 0
+    },
+    {
+      "L": 31,
+      "b": 2,
+      "blocks": 225,
+      "depth_bound": 30,
+      "elementary_depth_t_equals_b": 30,
+      "fanout_CNOTs": 736,
+      "minimum_reports_per_decoded_root": 8,
+      "qubits": 2883,
+      "side_lengths": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sweep_edge_channels": 736
+    },
+    {
+      "L": 31,
+      "b": 3,
+      "blocks": 100,
+      "depth_bound": 47,
+      "elementary_depth_t_equals_b": 39,
+      "fanout_CNOTs": 861,
+      "minimum_reports_per_decoded_root": 27,
+      "qubits": 2883,
+      "side_lengths": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "sweep_edge_channels": 861
+    },
+    {
+      "L": 31,
+      "b": 15,
+      "blocks": 4,
+      "depth_bound": 251,
+      "elementary_depth_t_equals_b": 147,
+      "fanout_CNOTs": 957,
+      "minimum_reports_per_decoded_root": 3375,
+      "qubits": 2883,
+      "side_lengths": [
+        16,
+        15
+      ],
+      "sweep_edge_channels": 957
+    },
+    {
+      "L": 31,
+      "b": 30,
+      "blocks": 1,
+      "depth_bound": 506,
+      "elementary_depth_t_equals_b": 282,
+      "fanout_CNOTs": 960,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 2883,
+      "side_lengths": [
+        31
+      ],
+      "sweep_edge_channels": 960
+    },
+    {
+      "L": 31,
+      "b": 31,
+      "blocks": 1,
+      "depth_bound": 523,
+      "elementary_depth_t_equals_b": 283,
+      "fanout_CNOTs": 960,
+      "minimum_reports_per_decoded_root": 0,
+      "qubits": 2883,
+      "side_lengths": [
+        31
+      ],
+      "sweep_edge_channels": 960
+    }
+  ],
+  "inherited_source_commit": "47e2a2632a939c96546b199b3ff08a1cd059f194",
+  "limitations": [
+    "Finite checks supplement the analytic construction, not a universal converse.",
+    "Ideal coherent gates, reset, storage and repeatable QND pointer readout.",
+    "No bounded classical signal latency or processor runtime is modeled.",
+    "The inherited helper commit identifies construction antecedents; script and helper hashes identify the tested local code."
+  ],
+  "python_implementation": "CPython",
+  "python_version": "3.12.14",
+  "schema_version": 1,
+  "scope": [
+    "Exact sparse coherent star-extraction circuits for L=2,3.",
+    "Every even small syndrome, actual controlled-Z phases and residual edge boundaries.",
+    "Fixed-density pointer compression and fanout with disjoint cell supports.",
+    "Uniform-even root distribution and physical output for decoder error patterns.",
+    "Fair-tie majority, independent-root error probabilities and Chernoff estimates."
+  ],
+  "script_sha256": "1e77ba707d44d4626231269f7529e19172e22647e9c1a58e5539fa511190dfa3",
+  "seed": 20261108,
+  "source_helper_sha256": "b5e4840a9602246d5894cad7617c3558f2b09e0938d98374c6b56adaa684c789",
+  "source_repository": "GoGoKo699/Topological-Communication-Cost",
+  "status": "PASS",
+  "summary": {
+    "configurations": 37,
+    "exact_coherent_extraction_amplitude_checks": 65600,
+    "exact_state_amplitude_checks": 196736,
+    "physical_root_error_pattern_checks": 72168,
+    "probability_checks": 36,
+    "syndrome_cases": 1456,
+    "uniform_even_root_distribution_checks": 5
+  }
+}

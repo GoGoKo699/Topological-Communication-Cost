@@ -6,7 +6,9 @@ For the toric code, the complete syndrome has order $`N`$ bits, but transmitting
 
 The converse shows that this scale is unavoidable for arbitrary local channels, including protocols unrelated to stabilizer decoding. Its content is stronger than a count of syndrome bits used by one particular decoder.
 
-## The three results
+A second model grants free global classical processing but makes every measurement report independently unreliable. The [noisy-readout account](noisy-readout.md), developed with [Readout Entanglement Limits](https://github.com/GoGoKo699/Readout-Entanglement-Limits), proves fixed-detector depth $`\Theta((\log L)^{1/3})`$ for any fixed positive overlap below one. It transfers the local braiding geometry to buffered two-loop tests and audits a physical quantum-pointer compression/readout protocol. The classical resource conventions of the two models are distinct.
+
+## The charged-communication results
 
 Use the [model](model.md) with $`N=2L^2`$, local range $`r\ge1`$, local-depth cap $`D`$, unconditional ground-space weight $`F`$, and
 
@@ -30,6 +32,32 @@ At fixed nonzero target overlap and fixed $`r`$, these establish the frontier
 ```
 
 with an exact construction attaining the scaling. The added ones retain a valid statement at zero communication and small depth. The matching claim permits constant rescaling of the depth and communication budgets; it does not optimize finite coefficients.
+
+## The noisy-report result
+
+Use the separate [noisy-report model](noisy-readout.md#1-physical-model-and-target): fixed local memory and report density, range-$`r`$ quantum operations, independent unflagged BSC reports, and free global classical processing of those reports. The physical output is still $`F=\mathrm{Tr}(P_{\mathrm{TC}}\rho)`$ after actual corrections. For a depth-$`T`$ competitor define
+
+```math
+M=\left\lfloor\frac{L}{36(rT+1)}\right\rfloor^2,
+\qquad
+k=\nu[36(rT+1)]^2T.
+```
+
+The [buffered blind-core proof](noisy-readout.md#3-buffered-blind-core-lemma) gives
+
+```math
+F\le\left[1-\frac{(2p)^k}{17}\right]^M.
+```
+
+The [constant-memory construction](noisy-readout.md#5-physically-compress-the-syndrome-before-readout) leaves one true defect pointer per block, copies it over block area and reads every copy $`t`$ times. For block areas $`A_j`$ and $`B`$ blocks, the final physically corrected state has the exact overlap
+
+```math
+F_{\mathrm{phys}}=\prod_{j=1}^{B-1}[1-e_{A_jt}(p)],
+\qquad
+1-F_{\mathrm{phys}}\le(B-1)e^{-\mathcal D(p)b^2t},
+```
+
+where $`e_m`$ is the fair-tie majority error and $`\mathcal D(p)=-\tfrac12\log[4p(1-p)]`$. Its explicit schedule uses $`q=3`$, $`r=1`$, $`\nu=1`$ and $`T\le16b+t-4`$. Taking $`t=b`$ establishes the [matched fixed-detector theorem](noisy-readout.md#7-matching-the-fixed-detector-depth). This is a new two-dimensional consequence; it does not identify a uniform crossover in varying detector quality or accuracy.
 
 ## Why the lower bound survives local measurements
 

@@ -2,7 +2,9 @@
 
 This repository studies the optimal scaling between local circuit depth and
 nonlocal classical communication for physically preparing toric-code ground
-states. The complete scientific account is organized by topic under science/.
+states. A separate noisy-report theorem gives fixed-detector preparation depth
+Theta((log L)^(1/3)) with free global processing of independent unflagged BSC
+reports. The complete scientific accounts are organized by topic under science/.
 
 Canonical entrypoints:
 - README.md: question, main bounds, reading routes, reproduction, scope and contact.
@@ -22,7 +24,12 @@ Canonical entrypoints:
   and explicit D <= 12 ell + 2, C <= 2(floor(L/ell)^2 - 1) bounds.
 - science/consequences.md: optimal scaling, exponential failure below a hard
   budget, expected-cost distinction, conditional ideal-bandwidth time law,
-  output and heralding limitations.
+  output and heralding limitations; separate noisy-report consequence.
+- science/noisy-readout.md: authoritative two-dimensional noisy-report model;
+  local two-loop K test; buffered blind-core proof retaining outside outcome
+  registers before conditioning; simultaneous-core trace inequalities; finite
+  F <= [1-(2p)^k/17]^M converse; actual constant-memory syndrome compression;
+  protected pointer fanout/QND readout, exact physical F and fixed-p theorem.
 - references/related-work.md: primary source comparison and attribution.
 - references/bibliography.bib: source metadata.
 - verification/README.md: reproducible finite checks and their limits.
@@ -49,6 +56,11 @@ Reader routes:
 - To implement the upper construction, read preparation and the verification
   guide. Count returned instructions and local instruction propagation.
 - To interpret the frontier, read consequences with the model's output contract.
+- For noisy reports, read science/noisy-readout.md as a self-contained separate
+  account, then the sister Readout-Entanglement-Limits/science/toric_extension.md.
+  The TCC page owns the new 2D proof; the sister retains its own 1D Bell theorem
+  and supplied the outside-record and protected-pointer methods. Sources are
+  pinned in the new page's attribution section and related work.
 - For an originality statement, read related work and the full cited primary
   sources. The braiding obstruction and spatial exponent are established work.
 
@@ -61,6 +73,30 @@ Preserve these distinctions:
   entanglement is not.
 - The target F = Tr(P_TC rho) is unconditional overlap with the full physical
   code space. The upper construction reaches one specified pure sector.
+- Charged communication and noisy reports are distinct models. In the former,
+  nonlocal bits and local classical propagation are charged. In the latter,
+  public classical computation/communication are free, every fresh outcome use
+  crosses its own unflagged BSC, and physical quantum corrections cost depth.
+- The noisy-report fixed-p theorem assumes fixed p in (0,1/2), fixed target
+  F0 in (0,1), fixed range and report-slot density. It is not a uniform crossover
+  law as p, target error or target overlap vary. Exact overlap one is separate.
+- The noisy-report lower proof first CPTP-completes outside instruments and
+  retains their outcome registers plus other-core test outputs. Only after
+  the disjoint backward-cone factorization may outside records be selected.
+  Inside true outcomes remain unselected; no adaptive-marginal independence is
+  assumed. The local K test consists of two contractible stabilizer loops.
+- In the noisy-report upper protocol, coherent pointer/data sweeps remove
+  defects before public readout. CNOT, controlled Z and reset preserve the
+  pointer/actual-defect invariant. Raw noisy syndrome XOR is not equivalent.
+- Three memory qubits per cell, nearest-neighbor gates and one QND report per
+  cell/layer suffice. Pointer fanout costs depth O(b), and t readout layers yield
+  area times t independent reports. Gates, reset and storage are ideal.
+- Decode B-1 roots, infer the final root from exact parity and physically apply
+  the selected Z product in a counted layer. The exact output overlap is
+  product_j[1-e_(A_j t)(p)], not the accuracy of a stored Pauli-frame label.
+- The noisy-report lower bound allows arbitrary finite local dimensions;
+  bounded report density, rather than the upper construction's q=3, controls
+  k=O(T^3). An extra ideal true-outcome interface invalidates the model.
 - The hard bound is F <= min(1, 2^C (16/17)^m), where
   m = floor(L/[32(rD+1)])^2. A vanishing floor gives the valid trivial bound.
 - The matching claim concerns scaling and permits constant budget rescaling.
